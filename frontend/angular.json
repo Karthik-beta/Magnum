@@ -71,7 +71,7 @@
         "serve": {
           "options": {
             "allowedHosts": [
-              "ca5b-117-204-53-74.ngrok-free.app"
+              "0.0.0.0"
             ]
           },
           "builder": "@angular-devkit/build-angular:dev-server",
