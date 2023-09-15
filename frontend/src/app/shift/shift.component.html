@@ -1,0 +1,85 @@
+<!-- <div class="container mt-5" style="width: 95%;">
+  <div class="table-container">
+    <div class="button-container">
+
+<button type="button" class="btn btn-primary"
+data-toggle="modal" data-target="#exampleModal"
+data-backdrop="static" data-keyboard="false"
+>
+    Edit Shift
+  </button>
+  </div>
+
+  <div class="back-button-container">
+    <button type="button" class="btn btn-primary" data-backdrop="static" data-keyboard="false">Back</button>
+  </div> -->
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Shift Timing</h5>
+          <button type="button" class="close"
+          data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <!-- <app-add-edit-pro [pro]="pro" *ngIf="ActivateAddEditProComp">
+          </app-add-edit-pro> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="search-bar d-flex justify-content-between mt-2 mb-2">
+    <button type="button" routerLink="/conf" class="btn btn-secondary ml-2 d-flex align-items-center" >
+      <i class="fas fa-chevron-left mr-1"></i> Back
+    </button>
+  </div>
+
+
+<!-- <div class="search-bar">
+    <input class="form-control" placeholder="Search">
+</div> -->
+<table class="table table-lg table-striped table-hover" style="text-align: center;">
+  <thead>
+    <tr class="color" style="background-color: #2b6099; color: white;">
+          <th>SHIFT</th>
+          <th>SHIFT START</th>
+          <th>SHIFT END</th>
+          <th>LUNCH START</th>
+          <th>LUNCH END</th>
+          <!-- <th>OPTIONS</th> -->
+          <!-- Add more header columns if needed -->
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let dataItem of ShiftList">
+          <!-- <td>{{ i + 1 }}</td> -->
+          <td>{{ dataItem.shift_name }}</td>
+          <td>{{ dataItem.shift_start_time }}</td>
+          <td>{{ dataItem.shift_end_time }}</td>
+          <td>{{ dataItem.lunch_start_time }}</td>
+          <td>{{ dataItem.lunch_end_time }}</td>
+          <!-- <td>
+            <button type="button" class="btn btn-light mr-1"
+                data-toggle="modal" data-target="#exampleModal"
+                data-backdrop="static" data-keyboard="false"
+                >
+            <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button type="button" class="btn btn-danger mr-1"
+                data-backdrop="static" data-keyboard="false"
+                >
+                <i class="fa-solid fa-trash"></i>
+                </button>
+          </td> -->
+      </tr>
+  </tbody>
+</table>

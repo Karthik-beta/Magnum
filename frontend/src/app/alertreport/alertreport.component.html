@@ -1,0 +1,217 @@
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-3">
+      <div class="dash-card shadow " style="background-color: skyblue; display: flex; align-items: center;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <p style="font-weight: bolder;">Today</p>
+            </div>
+            <div class="col">
+              <p style="font-weight: bolder;">0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="dash-card shadow " style="background-color: #ee6b6e;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <p style="font-weight: bolder;">Open</p>
+            </div>
+            <div class="col">
+              <p style="font-weight: bolder;">0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="dash-card shadow " style="background-color: #45b6fe;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <p style="font-weight: bolder;">Ack/Closure</p>
+            </div>
+            <div class="col">
+              <p style="font-weight: bolder;">5</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="dash-card shadow " style="background-color: #80e57c;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <p style="font-weight: bolder;">All</p>
+            </div>
+            <div class="col">
+              <p style="font-weight: bolder;">5</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- <div class="container-fluid col-md-12 mt-2 mb-2">
+  <div class="row justify-content-between">
+    <div class="col-auto text-left">
+      <span class="p-float-label">
+        <p-autoComplete field="autocomplete_label" id="inputtext-left" class="text-sm shadow" pInputText></p-autoComplete>
+        <label for="inputtext-left">Search</label>
+      </span>
+    </div>
+    <div class="col-md-2">
+      <span class="p-float-label">
+        <p-calendar [showIcon]="true" dateFormat="yy-mm-dd" class="shadow"></p-calendar>
+        <label for="inputtext-left">Select Date </label>
+      </span>
+    </div>
+    <div class="col-auto justify-content-center">
+      <p-dropdown optionLabel="name" placeholder="Assembly Line" class="text-sm shadow"></p-dropdown>
+    </div>
+    <div class="col-auto justify-content-center">
+      <p-dropdown optionLabel="name" placeholder="Machine ID" class="text-sm shadow"></p-dropdown>
+    </div>
+    <div class="col-auto justify-content-center">
+      <p-dropdown optionLabel="name" placeholder="Category" class="text-sm shadow"></p-dropdown>
+    </div>
+    <div class="col-auto justify-content-center">
+      <p-dropdown optionLabel="name" placeholder="Shift" class="text-sm shadow"></p-dropdown>
+    </div>
+    <div class="col-auto">
+      <button pButton type="button" class="p-button-raised shadow">
+        <i class="pi pi-download" style="margin-right: 0.3rem;"></i> Export CSV </button>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="container-fluid col-md-12 mt-2 mb-2">
+  <div class="row justify-content-between" style="font-size: small;">
+    <div class="col-auto">
+      <input type="text" class="form-control form-control-sm" placeholder="Search..." aria-label="Large" aria-describedby="inputGroup-sizing-lg">
+    </div>
+    <!-- <div class="col-auto">
+      <p-calendar [showIcon]="true" dateFormat="yy-mm-dd" placeholder="Select Date" class="small-calendar shadow"></p-calendar>
+    </div> -->
+    <div class="col-auto">
+      <select class="form-select form-select-sm" placeholder="Assembly Line">
+        <option disabled>Company</option>
+        <!-- <option>All</option> -->
+        <option selected>SKF PVT LTD</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <select class="form-select form-select-sm" placeholder="Assembly Line">
+        <option disabled>Location</option>
+        <!-- <option>All</option> -->
+        <option selected>BLR</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <select class="form-select form-select-sm" placeholder="Assembly Line">
+        <option disabled>Shopfloor</option>
+        <!-- <option>All</option> -->
+        <option selected>BALL BEARING</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <select class="form-select form-select-sm" placeholder="Assembly Line">
+        <option disabled>Assembly Line</option>
+        <!-- <option>All</option> -->
+        <option selected>CHANNEL 5</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <select class="form-select form-select-sm" placeholder="Assembly Line">
+        <option disabled selected>Machine ID</option>
+        <!-- <option>All</option> -->
+        <option>SGB CH5</option>
+        <option>SHG1 CH5</option>
+        <option>SHG2 CH5</option>
+        <option>SPC (IR) CH5</option>
+        <option>SSB1 CH5</option>
+        <option>SSB2 CH5</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <select class="form-select form-select-sm" placeholder="Assembly Line">
+        <option disabled selected>Category</option>
+        <!-- <option>All</option> -->
+        <option>RESETTING</option>
+        <option>ENGINEERING</option>
+        <option>ELECT MAINT</option>
+        <option>QUALITY</option>
+        <option>MECH MAINT</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <select class="form-select form-select-sm" placeholder="Assembly Line">
+        <option disabled selected>Shift</option>
+        <!-- <option>All</option> -->
+        <option>FS</option>
+        <option>SS</option>
+        <option>NS</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <button type="button" class="btn btn-sm btn-primary"><i class="pi pi-download" style="margin-right: 0.3rem;"></i>Export Excel</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Ticket</th>
+      <!-- <th>Login</th> -->
+      <th>Company</th>
+      <th>Location</th>
+      <th>Shopfloor</th>
+      <th>Assembly Line</th>
+      <th>Sub-Assembly Line</th>
+      <th>Machine Id</th>
+      <th>Category</th>
+      <th>Sub Category</th>
+      <th>Alert Shift</th>
+      <th>Andon Alert</th>
+      <th>Andon Acknowledge</th>
+      <th>Andon Resolved</th>
+      <th>Total Breakdown</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dataItem of andonList">
+      <td>{{ dataItem.ticket }}</td>
+      <!-- <td>XYZ</td> -->
+      <td>{{ dataItem.company }}</td>
+      <td>{{ dataItem.location }}</td>
+      <td>{{ dataItem.shopfloor }}</td>
+      <td>{{ dataItem.assemblyline }}</td>
+      <td></td>
+      <td>{{ dataItem.machineId }}</td>
+      <td>{{ dataItem.category }}</td>
+      <td>{{ dataItem.sub_category }}</td>
+      <td>{{ dataItem.alert_shift }}</td>
+      <td>{{ dataItem.andon_alerts | date:'MMM d, yyyy h:mm a' }}</td>
+      <td>{{ dataItem.andon_acknowledge | date:'MMM d, yyyy h:mm a' }}</td>
+      <td>{{ dataItem.andon_resolved | date:'MMM d, yyyy h:mm a' }}</td>
+      <td>{{ dataItem.total_time }}</td>
+    </tr>
+  </tbody>
+</table>

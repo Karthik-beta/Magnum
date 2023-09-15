@@ -1,0 +1,9 @@
+.chartContainer {
+  width: 400px;
+  height: 400px;
+}
+
+.barchartContainer {
+  width: 100%;
+  height: 200px;
+}
