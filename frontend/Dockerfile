@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build --prod
 
 # Stage 2: Create the final Nginx image
-FROM nginx:1.17
+FROM nginx:stable
 
 # Copy the build output from the previous stage to replace the default Nginx contents
 COPY --from=build /app/dist/frontend /usr/share/nginx/html
