@@ -186,3 +186,6 @@ td, th {
   align-items: center;
 }
 
+.label {
+  font-weight: bold;
+}

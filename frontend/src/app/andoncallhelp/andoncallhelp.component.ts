@@ -102,11 +102,11 @@ export class AndoncallhelpComponent implements OnInit {
 
 
   refreshAndList() {
-    this.service.getAndList().subscribe(data => {
-      this.andonList = data;
-      this.andonListWithoutFilter = data;
-      this.filterData();
-    });
+    // this.service.getAndList().subscribe(data => {
+    //   this.andonList = data;
+    //   this.andonListWithoutFilter = data;
+    //   this.filterData();
+    // });
   }
 
 

@@ -3,6 +3,7 @@ from skf import models
 from datetime import timedelta
 from skf.models import Andon
 
+
 class BreakdownCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.BreakdownCategory
@@ -72,3 +73,19 @@ class AndonSerializer(serializers.ModelSerializer):
             return total_time
 
         return "00:00"
+    
+
+
+class BreakdownHmiSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.BreakdownHMI
+        fields = '__all__'
+
+
+class AndonDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.AndonData
+        fields = '__all__'
+
+
+

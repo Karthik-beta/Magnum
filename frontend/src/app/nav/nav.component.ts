@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api'
 import { ButtonModule } from 'primeng/button';
 import { MenuItem, MessageService, ConfirmationService, ConfirmEventType } from 'primeng/api';
@@ -18,7 +20,9 @@ export class NavComponent implements OnInit {
   settings_items: MenuItem[] | undefined;
   management_items: MenuItem[] | undefined;
 
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService) {}
+  constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
+    private router: Router,
+    private http: HttpClient) {}
 
   ngOnInit() {
       this.profile_items = [
@@ -120,25 +124,63 @@ export class NavComponent implements OnInit {
       this.messageService.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted' });
   }
 
+  // confirm() {
+  //   this.confirmationService.confirm({
+  //       message: 'Are you sure that you want to Logout?',
+  //       header: 'Confirmation',
+  //       icon: 'pi pi-exclamation-triangle',
+  //       accept: () => {
+  //           this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have Successfully Logged Out' });
+  //       },
+  //       reject: () => {
+  //           this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have Cancelled' });
+  //       }
+  //   });
+
+
+  //   reject: () => {
+  //     this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have Cancelled' });
+  //   }
+
   confirm() {
     this.confirmationService.confirm({
-        message: 'Are you sure that you want to Logout?',
-        header: 'Confirmation',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have Successfully Logged Out' });
-        },
-        reject: () => {
-            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have Cancelled' });
-        }
+      message: 'Are you sure that you want to Logout?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.logout(); // Call the logout function here
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have Cancelled' });
+      }
     });
+  }
+
+  private logout() {
+    // Make an HTTP POST request to your logout endpoint
+    this.http.post('http://localhost:8000/api/logout/', {}).subscribe({
+      next: () => {
+        // Clear session/token (implement your logic here)
+
+        // Display a logout message
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have Successfully Logged Out' });
+
+        // Route to the login page
+        this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        console.error('Logout Error:', error);
+        // Handle any errors that occur during logout
+        // You can display an error message or implement custom error handling here
+      },
+    });
+  }
 
 
-    reject: () => {
-      this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have Cancelled' });
-    }
 
 
 
-}
+
+
+
 }

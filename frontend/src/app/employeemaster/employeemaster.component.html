@@ -192,16 +192,16 @@
   [value]="combinedLogs"
   class="p-datatable-sm"
   styleClass="p-datatable-sm p-datatable-gridlines"
-  [tableStyle]="{ 'min-width': '20rem' }"
+  [tableStyle]="{ 'min-width': '20rem', 'font-size': 'small' }"
   [lazy]="true"
   [loading]="loading"
-  (onLazyLoad)="loadLogs($event)"
   [paginator]="true"
   [rows]="rows"
   [totalRecords]="totalRecords"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   currentPageReportTemplate="{first} - {last} of {totalRecords}"
+  (onPageChange)="onPageChange($event)"
   >
   <!-- Rest of the PrimeNG DataTable code here -->
   <ng-template pTemplate="header">

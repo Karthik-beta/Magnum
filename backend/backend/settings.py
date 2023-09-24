@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'skf',
+    'authApp',
     'rest_framework',
     'corsheaders',
 ]
@@ -81,28 +82,40 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'skf_2',
+        'USER': 'postgres',
+        'PASSWORD': 'password123',
+        'HOST': 'localhost',
+    }
+}
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     )
+# }
+
+
+AUTH_USER_MODEL = 'authApp.User'
+
+
+# USE_TZ = False
+
+
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'skf',
-#         'USER': 'postgres',
-#         'PASSWORD': 'password123',
-#         'HOST': 'localhost',
+#         'USER': 'postgres',     
+#         'PASSWORD': 'password123',    
+#         'HOST': 'skfdbinstance.chk1fbhnfw9a.us-east-2.rds.amazonaws.com',  
+#         'PORT': '5432',                
 #     }
 # }
-
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'skf',
-        'USER': 'postgres',     
-        'PASSWORD': 'password123',    
-        'HOST': 'skfdbinstance.chk1fbhnfw9a.us-east-2.rds.amazonaws.com',  
-        'PORT': '5432',                
-    }
-}
 
 
 

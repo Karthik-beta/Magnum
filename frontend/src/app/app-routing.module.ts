@@ -28,10 +28,11 @@ import { AssemblylineComponent } from './assemblyline/assemblyline.component';
 import { MachineComponent } from './machine/machine.component';
 import { AssemblylineanalysisComponent } from './assemblylineanalysis/assemblylineanalysis.component';
 import { MachinewiseanalysisComponent } from './machinewiseanalysis/machinewiseanalysis.component';
+import { AlertComponent } from './alert/alert.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo:'/dashboard', pathMatch:'full'},
+  {path: '', redirectTo:'/alert', pathMatch:'full'},
   {path: 'dashboard', component:DashboardComponent},
   {path: 'report', component:ReportComponent},
   {path: 'monthly', component:MonthreportComponent},
@@ -59,6 +60,7 @@ const routes: Routes = [
   {path: 'machine', component:MachineComponent},
   {path: 'assembly_analysis', component:AssemblylineanalysisComponent},
   {path: 'machinewise_analysis', component:MachinewiseanalysisComponent},
+  {path: 'alert', component:AlertComponent},
 
 ];
 

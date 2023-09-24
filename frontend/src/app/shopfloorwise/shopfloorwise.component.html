@@ -1,5 +1,5 @@
 <div class="container-fluid col-md-12">
-  <div class="row justify-content-between">
+  <div class="row justify-content-between" >
       <div class="col-md-auto">
           <div class="dash-card shadow rounded">
               <div class="card-body">
@@ -100,19 +100,19 @@
       <h4>SHOPFLOOR : BALL BEARING</h4>
     </div>
     <div class="col-md-12">
-      <div class="scrollable-cards">
+      <div class="scrollable-cards" *ngFor="let dataItem of ShopfloorList; let i = index">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-bell"></i></h5>
-            <div class="card-content">
-            <p class="card-text" style="font-weight: bolder;">Shopfloor : BALL BEARING</p>
-            <p class="card-text">Machine ID : SHG2 CH5</p>
-            <p class="card-text">ENGINEERING	</p>
-            <p class="card-text">Sep 11, 2023 3:30 PM</p>
+            <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">
+            <p class="card-text" style="font-weight: bolder;">Shopfloor : {{ dataItem.shopfloor }}</p>
+            <p class="card-text">Machine ID : {{ dataItem.machineId }}</p>
+            <p class="card-text">{{ dataItem.category }}	</p>
+            <p class="card-text">{{ dataItem.andon_alerts }}</p>
             </div>
           </div>
         </div>
-        <div class="card">
+        <!-- <div class="card">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-bell"></i></h5>
             <div class="card-content-gray">
@@ -166,7 +166,7 @@
               <p class="card-text">Sep 11, 2023 4:57 PM</p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

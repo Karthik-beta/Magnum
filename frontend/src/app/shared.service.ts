@@ -143,9 +143,29 @@ export class SharedService {
     return this.http.get<any[]>(`${this.baseUrl}/andon/`);
   }
 
-  getAndList():Observable<any[]>{
-    return this.http.get<any[]>(`${this.baseUrl}/andon/`);
+  // getAndList():Observable<any[]>{
+  //   return this.http.get<any[]>(`${this.baseUrl}/andon/`);
+  // }
+
+  // getAndList(params: any): Observable<any> {
+  //   let httpParams = new HttpParams();
+
+  //   for (const key in params) {
+  //     if (params.hasOwnProperty(key)) {
+  //       httpParams = httpParams.append(key, params[key]);
+  //     }
+  //   }
+  //   return this.http.get(`${this.baseUrl}/andon/`, { params: httpParams });
+  // }
+
+  getAndList(params: { [key: string]: any }): Observable<any> {
+    const httpParams = Object.keys(params).reduce((prevParams, key) => {
+      return prevParams.append(key, params[key]);
+    }, new HttpParams());
+
+    return this.http.get(`${this.baseUrl}/andon/`, { params: httpParams });
   }
+
 
   addAnd(val:any){
     return this.http.post(`${this.baseUrl}/andon/`,val);
@@ -157,6 +177,25 @@ export class SharedService {
 
   deleteAnd(id: number){
     return this.http.delete(`${this.baseUrl}/andon/`+id);
+  }
+
+
+  downloadAndonData(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/export/`, {
+      responseType: 'blob' as 'json', // Set the response type to 'blob' for binary data
+    });
+  }
+
+  getMetricsData():Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/metrics/`);
+  }
+
+  getShopfloorwiseData():Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/shopfloorwise/`);
+  }
+
+  getDatabaseStatus():Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/check_database_connection/`);
   }
 
 }

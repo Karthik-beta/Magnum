@@ -13,6 +13,9 @@
     <div class="card mainCard col-md-4">
       <!-- <apx-chart [series]="chartSeries" [chart]="chartDetails" [labels]="chartLabels" [title]="chartTitle" [dataLabels]="chartDataLabels"></apx-chart> -->
       <apx-chart [series]="chartSeries2" [chart]="chartDetails2" [labels]="chartLabels2" [title]="chartTitle2" [dataLabels]="chartDataLabels2"></apx-chart>
+      <!-- <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+        <img src="assets/images/siren.gif" alt="" width="100%" height="320px">
+      </div> -->
     </div>
     <div class="card smallCardsContainer col-md-8 mx-auto">
       <div class="row">
@@ -22,7 +25,7 @@
             <!-- ... Small Card content ... -->
             <div class="text-center">
               <p class="card-subtitle">ALERT TODAY</p>
-              <h4 class="card-title text-bold">0</h4>
+              <h4 class="card-title text-bold">{{ today_open_alerts }}</h4>
 
             </div>
           </div>
@@ -33,7 +36,7 @@
             <!-- ... Small Card content ... -->
             <div class="text-center">
               <p class="card-subtitle">ALERT OPEN</p>
-              <h4 class="card-title text-bold">0</h4>
+              <h4 class="card-title text-bold">{{ total_open_alerts }}</h4>
 
             </div>
           </div>
@@ -44,7 +47,7 @@
             <!-- ... Small Card content ... -->
             <div class="text-center">
               <p class="card-subtitle">ALERT ACK/CLOSURE</p>
-              <h4 class="card-title text-bold">5</h4>
+              <h4 class="card-title text-bold">{{ total_acknowledge_alerts }}</h4>
 
             </div>
           </div>
@@ -58,7 +61,7 @@
             <div class="text-center">
               <p class="card-subtitle">BREAKDOWN ALERT</p>
               <!-- <h4 class="card-title text-bold"></h4> -->
-              <h4 class="card-title text-bold">5</h4>
+              <h4 class="card-title text-bold">{{ total_alerts }}</h4>
               <!-- <p class="card-subtitle">CLICK TO VIEW</p> -->
             </div>
           </div>
@@ -69,7 +72,7 @@
             <!-- ... Small Card content ... -->
             <div class="text-center">
               <p class="card-subtitle">RESETTING</p>
-              <h4 class="card-title text-bold">1</h4>
+              <h4 class="card-title text-bold">{{ total_resetting_alerts }}</h4>
 
             </div>
           </div>
@@ -80,7 +83,7 @@
             <!-- ... Small Card content ... -->
             <div class="text-center">
               <p class="card-subtitle">ENGINEERING</p>
-              <h4 class="card-title text-bold">1</h4>
+              <h4 class="card-title text-bold">{{ total_engineering_alerts }}</h4>
 
             </div>
           </div>
@@ -93,7 +96,7 @@
             <!-- ... Small Card content ... -->
             <div class="text-center">
               <p class="card-subtitle">ELECT MAINT</p>
-              <h4 class="card-title text-bold">1</h4>
+              <h4 class="card-title text-bold">{{ total_elect_maint_alerts }}</h4>
 
             </div>
           </div>
@@ -104,7 +107,7 @@
             <!-- ... Small Card content ... -->
             <div class="text-center">
               <p class="card-subtitle">QUALITY</p>
-              <h4 class="card-title text-bold">1</h4>
+              <h4 class="card-title text-bold">{{ total_quality_alerts }}</h4>
 
             </div>
           </div>
@@ -115,7 +118,7 @@
             <!-- ... Small Card content ... -->
             <div class="text-center">
               <p class="card-subtitle">MECH MAINT</p>
-              <h4 class="card-title text-bold">1</h4>
+              <h4 class="card-title text-bold">{{ total_mech_maint_alerts }}</h4>
 
             </div>
           </div>
@@ -150,46 +153,63 @@
 
 
 
+
+
+
+
 <div class="container-fluid col-md-12 mt-2 mb-2">
   <div class="row justify-content-between" style="font-size: small;">
     <div class="col-auto">
+      <label class="label">Search :</label>
       <input type="text" class="form-control form-control-sm" placeholder="Search..." aria-label="Large" aria-describedby="inputGroup-sizing-lg">
     </div>
     <!-- <div class="col-auto">
       <p-calendar [showIcon]="true" dateFormat="yy-mm-dd" placeholder="Select Date" class="small-calendar shadow"></p-calendar>
     </div> -->
     <div class="col-auto">
+      <label class="label">Company :</label>
       <select class="form-select form-select-sm" placeholder="Assembly Line">
-        <option disabled>Company</option>
+        <!-- <option disabled>Company</option> -->
         <!-- <option>All</option> -->
         <option selected>SKF PVT LTD</option>
       </select>
     </div>
     <div class="col-auto">
+      <label class="label">Location :</label>
       <select class="form-select form-select-sm" placeholder="Assembly Line">
-        <option disabled>Location</option>
+        <!-- <option disabled>Location</option> -->
         <!-- <option>All</option> -->
         <option selected>BLR</option>
       </select>
     </div>
     <div class="col-auto">
+      <label class="label">Shopfloor :</label>
       <select class="form-select form-select-sm" placeholder="Assembly Line">
-        <option disabled>Shopfloor</option>
+        <!-- <option disabled>Shopfloor</option> -->
         <!-- <option>All</option> -->
         <option selected>BALL BEARING</option>
       </select>
     </div>
     <div class="col-auto">
-      <select class="form-select form-select-sm" placeholder="Assembly Line">
-        <option disabled>Assembly Line</option>
-        <!-- <option>All</option> -->
-        <option selected>CHANNEL 5</option>
+      <label class="label">Assemblyline :</label>
+      <select class="form-select form-select-sm" placeholder="Assembly Line" [(ngModel)]="selectedAssemblyline" (change)="onAssemblylineChange()">
+        <!-- <option selected disabled>Assembly Line</option> -->
+        <option>All</option>
+        <option>CH1</option>
+        <option>CH2</option>
+        <option>CH3</option>
+        <option>CH4</option>
+        <option>CH5</option>
+        <option>CH6</option>
+        <option>CH7</option>
+        <option>CH8</option>
       </select>
     </div>
     <div class="col-auto">
-      <select class="form-select form-select-sm" placeholder="Assembly Line">
-        <option disabled selected>Machine ID</option>
-        <!-- <option>All</option> -->
+      <label class="label">Machine ID :</label>
+      <select class="form-select form-select-sm" [(ngModel)]="selectedMachine" (change)="onMachineChange()">
+        <!-- <option disabled selected>Machine ID</option> -->
+        <option>All</option>
         <option>SGB CH5</option>
         <option>SHG1 CH5</option>
         <option>SHG2 CH5</option>
@@ -199,9 +219,10 @@
       </select>
     </div>
     <div class="col-auto">
-      <select class="form-select form-select-sm" placeholder="Assembly Line">
-        <option disabled selected>Category</option>
-        <!-- <option>All</option> -->
+      <label class="label">Category :</label>
+      <select class="form-select form-select-sm" placeholder="Assembly Line" [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+        <!-- <option disabled selected>Category</option> -->
+        <option>All</option>
         <option>RESETTING</option>
         <option>ENGINEERING</option>
         <option>ELECT MAINT</option>
@@ -210,16 +231,20 @@
       </select>
     </div>
     <div class="col-auto">
-      <select class="form-select form-select-sm" placeholder="Assembly Line">
-        <option disabled selected>Shift</option>
-        <!-- <option>All</option> -->
+      <label class="label">Shift :</label>
+      <select class="form-select form-select-sm" placeholder="Assembly Line" [(ngModel)]="selectedShift" (change)="onShiftChange()">
+        <!-- <option disabled selected>Shift</option> -->
+        <option>All</option>
         <option>FS</option>
         <option>SS</option>
         <option>NS</option>
       </select>
     </div>
     <div class="col-auto">
-      <button type="button" class="btn btn-sm btn-primary"><i class="pi pi-download" style="margin-right: 0.3rem;"></i>Export Excel</button>
+      <label class="label" for="excel-export">Export Excel :</label>
+      <div class="btn-container">
+        <button type="button" (click)="downloadAndonData()" class="btn btn-sm btn-primary"><i class="pi pi-download" style="margin-right: 0.3rem;"></i>Download</button>
+      </div>
     </div>
   </div>
 </div>
@@ -228,10 +253,24 @@
 
 
 
-<table class="table table-striped table-hover">
-  <thead>
-    <tr>
-      <th>Ticket</th>
+<p-table
+[value]="andonList"
+class="p-datatable-sm table-striped"
+styleClass="p-datatable-sm p-datatable-gridlines"
+[tableStyle]="{ 'min-width': '20rem', 'font-size': 'x-small' }"
+[lazy]="true"
+[loading]="loading"
+[paginator]="true"
+[rows]="rows"
+[totalRecords]="totalRecords"
+[rowsPerPageOptions]="rowsPerPageOptions"
+[showCurrentPageReport]="true"
+currentPageReportTemplate="{first} - {last} of {totalRecords}"
+(onPageChange)="onPageChange($event)"
+>
+<ng-template pTemplate="header">
+  <tr class="text-size">
+    <th>Ticket</th>
       <!-- <th>Login</th> -->
       <th>Company</th>
       <th>Location</th>
@@ -247,10 +286,10 @@
       <th>Andon Resolved</th>
       <th>Total Breakdown</th>
     </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let dataItem of andonList">
-      <td>{{ dataItem.ticket }}</td>
+  </ng-template>
+  <ng-template pTemplate="body" let-dataItem let-i="rowIndex">
+      <tr class="text-size">
+        <td>{{ dataItem.id }}</td>
       <!-- <td>XYZ</td> -->
       <td>{{ dataItem.company }}</td>
       <td>{{ dataItem.location }}</td>
@@ -261,10 +300,10 @@
       <td>{{ dataItem.category }}</td>
       <td>{{ dataItem.sub_category }}</td>
       <td>{{ dataItem.alert_shift }}</td>
-      <td>{{ dataItem.andon_alerts | date:'MMM d, yyyy h:mm a' }}</td>
-      <td>{{ dataItem.andon_acknowledge | date:'MMM d, yyyy h:mm a' }}</td>
-      <td>{{ dataItem.andon_resolved | date:'MMM d, yyyy h:mm a' }}</td>
+      <td>{{ dataItem.andon_alerts | slice:0:19 }}</td>
+      <td>{{ dataItem.andon_acknowledge | slice:0:19 }}</td>
+      <td>{{ dataItem.andon_resolved | slice:0:19 }}</td>
       <td>{{ dataItem.total_time }}</td>
     </tr>
-  </tbody>
-</table>
+  </ng-template>
+</p-table>

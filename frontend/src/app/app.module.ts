@@ -57,6 +57,7 @@ import { AssemblylineComponent } from './assemblyline/assemblyline.component';
 import { MachineComponent } from './machine/machine.component';
 import { AssemblylineanalysisComponent } from './assemblylineanalysis/assemblylineanalysis.component';
 import { MachinewiseanalysisComponent } from './machinewiseanalysis/machinewiseanalysis.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { MachinewiseanalysisComponent } from './machinewiseanalysis/machinewisea
     MachineComponent,
     AssemblylineanalysisComponent,
     MachinewiseanalysisComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
