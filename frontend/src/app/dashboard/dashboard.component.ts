@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SharedService } from '../shared.service';
 import { ApexChart, ApexDataLabels, ApexNonAxisChartSeries, ApexTitleSubtitle } from 'ng-apexcharts';
 import { MessageService, ConfirmationService, ConfirmEventType } from 'primeng/api';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -42,10 +43,14 @@ export class DashboardComponent implements OnInit {
 
 
 
+  databaseStatus: string = '';
+  databaseSubscription: Subscription | undefined;
+
 
   ngOnInit(): void {
     this.refreshAndList();
-    // this.metricsData();
+    this.metricsData();
+    this.checkDatabaseConnection();
   }
 
 
@@ -62,6 +67,34 @@ export class DashboardComponent implements OnInit {
       this.totalRecords = data.count;   // Assuming your API response has a 'count' property
       this.loading = false;
     });
+  }
+
+
+  checkDatabaseConnection() {
+    this.databaseSubscription = this.service.getDatabaseStatus().subscribe({
+      next: (response: any) => {
+        // Set the database status message based on the response
+        this.databaseStatus = response.message;
+      },
+      error: (error: any) => {
+        // Set an error message if the database connection check fails
+        this.databaseStatus = 'Database connection error: ' + error.error.message;
+      }
+    });
+  }
+
+  // checkDatabaseConnection() {
+  //   this.service.getDatabaseStatus().subscribe((data: any) => {
+  //     this.databaseStatus = data.message;
+  //   }
+  //   );
+  // }
+
+  ngOnDestroy() {
+    // Unsubscribe from the observable to prevent memory leaks
+    if (this.databaseSubscription) {
+      this.databaseSubscription.unsubscribe();
+    }
   }
 
 

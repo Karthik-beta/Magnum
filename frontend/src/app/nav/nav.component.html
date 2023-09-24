@@ -1,3 +1,4 @@
+<ng-container *ngIf="!isLoginPage">
 <div class="container-fluid shadow">
   <header class="d-flex flex-wrap justify-content-center py-2 mb-2 border-bottom ">
     <a href="/alert" class="d-flex align-items-center mb-4 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
@@ -5,7 +6,7 @@
       <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-4">MAGNUM</span> -->
     </a>
-    <a href="/daalertshboard" class="d-flex align-items-center mb-4 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+    <a href="/alert" class="d-flex align-items-center mb-4 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
       <img src="assets/images/SKF.jpeg" alt="" width="150" height="40">
       <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-4">MAGNUM</span> -->
@@ -68,7 +69,7 @@
   <p-toast></p-toast>
   <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
-
+</ng-container>
 
 
 

@@ -157,9 +157,9 @@
 -->
 
 
-<p-table [value]="andonList" class="p-datatable-sm table-striped" styleClass="p-datatable-sm p-datatable-gridlines" [tableStyle]="{ 'min-width': '20rem', 'font-size': 'x-small' }" [lazy]="true" [loading]="loading" [paginator]="true" [rows]="rows" [totalRecords]="totalRecords" [rowsPerPageOptions]="rowsPerPageOptions" [showCurrentPageReport]="true" currentPageReportTemplate="{first} - {last} of {totalRecords}" (onPageChange)="onPageChange($event)">
+<p-table [value]="andonList" class="p-datatable-sm table-striped" styleClass="p-datatable-sm p-datatable-gridlines" [tableStyle]="{ 'min-width': '20rem', 'font-size': 'x-small', 'text-color': '#000000' }" [lazy]="true" [loading]="loading" [paginator]="true" [rows]="rows" [totalRecords]="totalRecords" [rowsPerPageOptions]="rowsPerPageOptions" [showCurrentPageReport]="true" currentPageReportTemplate="{first} - {last} of {totalRecords}" (onPageChange)="onPageChange($event)">
   <ng-template pTemplate="header">
-    <tr class="text-size">
+    <tr class="text-size" style="font-weight: bold; color: black;">
       <th>Ticket</th>
       <!-- <th>Login</th> -->
       <th>Company</th>

@@ -45,7 +45,7 @@ export class AlertreportComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshAndList();
-    // this.metricsData();
+    this.metricsData();
   }
 
 
@@ -172,6 +172,8 @@ export class AlertreportComponent implements OnInit {
       }
     });
   }
+
+
 
 
   metricsData() {

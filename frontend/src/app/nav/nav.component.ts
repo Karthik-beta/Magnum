@@ -24,7 +24,13 @@ export class NavComponent implements OnInit {
     private router: Router,
     private http: HttpClient) {}
 
+
+  isLoginPage: boolean = true;
+
+
   ngOnInit() {
+    // Check if the current URL is the login page
+    this.isLoginPage = this.router.url.includes('/login');
       this.profile_items = [
           {
               label: 'Options',

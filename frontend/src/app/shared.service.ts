@@ -179,7 +179,6 @@ export class SharedService {
     return this.http.delete(`${this.baseUrl}/andon/`+id);
   }
 
-
   downloadAndonData(): Observable<any> {
     return this.http.get(`${this.baseUrl}/export/`, {
       responseType: 'blob' as 'json', // Set the response type to 'blob' for binary data
@@ -196,6 +195,10 @@ export class SharedService {
 
   getDatabaseStatus():Observable<any[]>{
     return this.http.get<any[]>(`${this.baseUrl}/check_database_connection/`);
+  }
+
+  getAndonOpenAlerts():Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/andon_open/`);
   }
 
 }

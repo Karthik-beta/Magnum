@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { SharedService } from '../shared.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -18,7 +18,27 @@ export class LoginComponent {
     password: ''
   };
 
-  constructor(private http: HttpClient, private router: Router) {}
+  isLoginPage: boolean = false;
+
+  constructor(private http: HttpClient, private router: Router, private sharedService: SharedService) {}
+
+
+  ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Determine if the user is on the login page
+        this.isLoginPage = this.router.url.includes('/login');
+        this.sharedService.setIsLoginPage(this.isLoginPage);
+      }
+    });
+
+    // Subscribe to changes in isLoginPage
+    this.sharedService.isLoginPage$.subscribe((value) => {
+      this.isLoginPage = value;
+    });
+  }
+
+
 
   onLogin() {
     // Send a POST request to your Django backend for authentication

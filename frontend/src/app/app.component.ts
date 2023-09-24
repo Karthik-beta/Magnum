@@ -9,7 +9,7 @@ import { SharedService } from './shared.service';
 export class AppComponent {
   // title = 'frontend';
 
-  isLoginPage: boolean = true; // Set to true by default
+  isLoginPage: boolean = false; // Set to true by default
 
   constructor(private sharedService: SharedService) {}
 

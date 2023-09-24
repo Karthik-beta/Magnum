@@ -18,9 +18,14 @@ from datetime import date
 from django.db import connection
 from django.db.utils import OperationalError
 import jwt, datetime
+from datetime import datetime, timedelta
+from django.db.models import ExpressionWrapper, F, fields, DateTimeField
+from django.utils import timezone
 from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth import authenticate
 from rest_framework.response import Response
+from django.db.models import Q
+from openpyxl.styles import Font, PatternFill, Alignment
 
 
 from skf.models import (BreakdownCategory,
@@ -100,35 +105,35 @@ def andonapi(request, id=0):
 
 
 
-class DownloadAndonData(APIView):
-    def get(self, request):
-        # Query the EmployeeData model to retrieve the data
-        andon_data = Andon.objects.all()
+# class DownloadAndonData(APIView):
+#     def get(self, request):
+#         # Query the EmployeeData model to retrieve the data
+#         andon_data = Andon.objects.all()
 
-        # Create a new workbook and add a worksheet
-        wb = openpyxl.Workbook()
-        ws = wb.active
+#         # Create a new workbook and add a worksheet
+#         wb = openpyxl.Workbook()
+#         ws = wb.active
 
-        # Add data from the Andon model to the worksheet
-        for data in andon_data:
-            # Convert datetime objects to a timezone-aware format with tzinfo set to None
-            andon_alerts = data.andon_alerts.replace(tzinfo=None) if data.andon_alerts else None
-            andon_acknowledge = data.andon_acknowledge.replace(tzinfo=None) if data.andon_acknowledge else None
-            andon_resolved = data.andon_resolved.replace(tzinfo=None) if data.andon_resolved else None
+#         # Add data from the Andon model to the worksheet
+#         for data in andon_data:
+#             # Convert datetime objects to a timezone-aware format with tzinfo set to None
+#             andon_alerts = data.andon_alerts.replace(tzinfo=None) if data.andon_alerts else None
+#             andon_acknowledge = data.andon_acknowledge.replace(tzinfo=None) if data.andon_acknowledge else None
+#             andon_resolved = data.andon_resolved.replace(tzinfo=None) if data.andon_resolved else None
 
-        # Add column headers to the worksheet
-        ws.append(['Ticket', 'Company', 'Location', 'Shop Floor', 'Assembly Line', 'Machine ID', 'Category', 'Sub Category', 'Alert Shift', 'Andon Alerts', 'Andon Acknowledge', 'Andon Resolved', 'Total Breakdown'])
+#         # Add column headers to the worksheet
+#         ws.append(['Ticket', 'Company', 'Location', 'Shop Floor', 'Assembly Line', 'Machine ID', 'Category', 'Sub Category', 'Alert Shift', 'Andon Alerts', 'Andon Acknowledge', 'Andon Resolved', 'Total Breakdown'])
 
-        # Add data from the EmployeeData model to the worksheet
-        for data in andon_data:
-            ws.append([data.ticket, data.company, data.location, data.shopfloor, data.assemblyline, data.machineId, data.category, data.sub_category, data.alert_shift, data.andon_alerts, data.andon_acknowledge, data.andon_resolved, data.total_time])
+#         # Add data from the EmployeeData model to the worksheet
+#         for data in andon_data:
+#             ws.append([data.ticket, data.company, data.location, data.shopfloor, data.assemblyline, data.machineId, data.category, data.sub_category, data.alert_shift, data.andon_alerts, data.andon_acknowledge, data.andon_resolved, data.total_time])
 
-        # Save the workbook to a response
-        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        response['Content-Disposition'] = 'attachment; filename=Andon_Data.xlsx'
-        wb.save(response)
+#         # Save the workbook to a response
+#         response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+#         response['Content-Disposition'] = 'attachment; filename=Andon_Data.xlsx'
+#         wb.save(response)
 
-        return response
+#         return response
     
 
 class AndonDataPagination(PageNumberPagination):
@@ -189,30 +194,6 @@ class AndonDataListCreateView(generics.ListCreateAPIView):
 
 
 
-# class DownloadAndonData(APIView):
-#     def get(self, request):
-#         # Query the EmployeeData model to retrieve the data
-#         andon_data = AndonData.objects.all()
-
-#         # Create a new workbook and add a worksheet
-#         wb = openpyxl.Workbook()
-#         ws = wb.active
-
-#         # Add column headers to the worksheet
-#         ws.append(['Company', 'Location', 'Shopfloor', 'Assemblyline', 'Machine_id', 'Category', 'Sub Category', 'Alert Shift', 'Andon Alert', 'Andon Acknowledge', 'Andon Resolved', 'Total Breakdown'])
-
-#         # Add data from the EmployeeData model to the worksheet
-#         for data in andon_data:
-#             ws.append([data.company, data.location, data.shopfloor, data.assemblyline, data.machineId, data.category, data.sub_category, data.alert_shift, data.andon_alerts, data.andon_acknowledge, data.andon_resolved, data.total_time])
-
-#         # Save the workbook to a response
-#         response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-#         response['Content-Disposition'] = 'attachment; filename=Andon_Data.xlsx'
-#         wb.save(response)
-
-#         return response
-
-
 
 
 
@@ -235,12 +216,23 @@ class AndonDataListCreateView(generics.ListCreateAPIView):
 #             cell.font = header_font
 #             cell.fill = header_fill
 #             cell.alignment = Alignment(wrap_text=False)  # Prevent text wrapping
-#             # Auto-size the column width based on the content
-#             ws.column_dimensions[openpyxl.utils.get_column_letter(col_num)].auto_size = True
 
 #         # Add data from the AndonData model to the worksheet
 #         for row_num, data in enumerate(andon_data, 2):  # Start from row 2 (after header)
 #             ws.append([data.company, data.location, data.shopfloor, data.assemblyline, data.machineId, data.category, data.sub_category, data.alert_shift, data.andon_alerts, data.andon_acknowledge, data.andon_resolved, data.total_time])
+
+#         # AutoFit column width for all columns
+#         for column_cells in ws.columns:
+#             max_length = 0
+#             column = column_cells[0].column_letter  # Get the column name (e.g., 'A', 'B', ...)
+#             for cell in column_cells:
+#                 try:
+#                     if len(str(cell.value)) > max_length:
+#                         max_length = len(cell.value)
+#                 except:
+#                     pass
+#             adjusted_width = (max_length + 2)  # Add extra padding
+#             ws.column_dimensions[column].width = adjusted_width
 
 #         # Save the workbook to a response
 #         response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
@@ -248,52 +240,6 @@ class AndonDataListCreateView(generics.ListCreateAPIView):
 #         wb.save(response)
 
 #         return response
-
-
-
-
-class DownloadAndonData(APIView):
-    def get(self, request):
-        # Query the AndonData model to retrieve the data
-        andon_data = AndonData.objects.all()
-
-        # Create a new workbook and add a worksheet
-        wb = openpyxl.Workbook()
-        ws = wb.active
-
-        # Add column headers to the worksheet and apply styles
-        header_row = ['Company', 'Location', 'Shopfloor', 'Assemblyline', 'Machine_id', 'Category', 'Sub Category', 'Alert Shift', 'Andon Alert', 'Andon Acknowledge', 'Andon Resolved', 'Total Breakdown']
-        header_font = openpyxl.styles.Font(bold=True)
-        header_fill = openpyxl.styles.PatternFill(start_color="CCCCCC", end_color="CCCCCC", fill_type="solid")
-        for col_num, column_title in enumerate(header_row, 1):
-            cell = ws.cell(row=1, column=col_num, value=column_title)
-            cell.font = header_font
-            cell.fill = header_fill
-            cell.alignment = Alignment(wrap_text=False)  # Prevent text wrapping
-
-        # Add data from the AndonData model to the worksheet
-        for row_num, data in enumerate(andon_data, 2):  # Start from row 2 (after header)
-            ws.append([data.company, data.location, data.shopfloor, data.assemblyline, data.machineId, data.category, data.sub_category, data.alert_shift, data.andon_alerts, data.andon_acknowledge, data.andon_resolved, data.total_time])
-
-        # AutoFit column width for all columns
-        for column_cells in ws.columns:
-            max_length = 0
-            column = column_cells[0].column_letter  # Get the column name (e.g., 'A', 'B', ...)
-            for cell in column_cells:
-                try:
-                    if len(str(cell.value)) > max_length:
-                        max_length = len(cell.value)
-                except:
-                    pass
-            adjusted_width = (max_length + 2)  # Add extra padding
-            ws.column_dimensions[column].width = adjusted_width
-
-        # Save the workbook to a response
-        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        response['Content-Disposition'] = 'attachment; filename=Andon_Data.xlsx'
-        wb.save(response)
-
-        return response
     
 
 
@@ -376,76 +322,96 @@ def check_database_connection(request):
 
 
 
-# class RegisterView(APIView):
-#     def post(self, request):
-#         serializer = UserSerializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         serializer.save()
-#         return Response(serializer.data)
+
+
+
+class AndonDataOpenListView(generics.ListAPIView):
+    serializer_class = AndonDataSerializer
+
+    def get_queryset(self):
+        return AndonData.objects.filter(andon_resolved__isnull=True)
     
 
 
-# class LoginView(APIView):
-#     # permission_classes = [IsAuthenticated] 
 
-#     def post(self, request):
-#         username = request.data.get('username')
-#         password = request.data.get('password')
+# class AndonDataOpenListView(generics.ListAPIView):
+#     serializer_class = AndonDataSerializer
 
-#         user = authenticate(username=username, password=password)
-
-#         if user is None:
-#             raise AuthenticationFailed('Invalid credentials, try again')
-            
-#         if not user.check_password(password):
-#             raise AuthenticationFailed('Incorrect password!')
+#     def get_queryset(self):
+#         queryset = AndonData.objects.filter(andon_resolved__isnull=True)
         
-#         payload = {
-#             'id': user.id,
-#             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
-#             'iat': datetime.datetime.utcnow(),
-#         }
-
-#         token = jwt.encode(payload, 'secret', algorithm='HS256')
-
-#         response = Response()
-
-#         response.set_cookie(key='jwt', value=token, httponly=True)
+#         # Calculate the total breakdown time for each record
+#         for record in queryset:
+#             andon_alert_time_str = record.andon_alert  # Assuming 'andon_alert' is the field with date/time as a string
+#             if andon_alert_time_str:
+#                 andon_alert_time = datetime.strptime(andon_alert_time_str, "%Y-%m-%d %H:%M:%S")  # Adjust the format as needed
+#                 current_time = datetime.now()
+#                 total_breakdown_time = current_time - andon_alert_time
+#                 record.total_time = str(total_breakdown_time)
         
-#         response.data = {
-#                 'message': 'Logged in as successfully',
-#                 'name': user.name,
-#                 'jwt': token
-#         }
-        
-#         return response
-    
-
-# class UserView(APIView):
-
-#     def get(self, request):
-#         token = request.COOKIES.get('jwt')
-
-#         if not token:
-#             raise AuthenticationFailed('Unauthenticated!')
-
-#         try:
-#             payload = jwt.decode(token, 'secret', algorithms=['HS256'])
-
-#         except jwt.ExpiredSignatureError:
-#             raise AuthenticationFailed('Unauthenticated!')
-
-#         user = User.objects.filter(id=payload['id']).first()
-#         serializer = UserSerializer(user)
-#         return Response(serializer.data)
-    
+#         return queryset
 
 
-# class LogoutView(APIView):
-#     def post(self, request):
-#         response = Response()
-#         response.delete_cookie('jwt')
-#         response.data = {
-#             'message': 'success'
-#         }
-#         return response
+
+
+
+
+class DownloadAndonData(APIView):
+    def get(self, request):
+        # Extract query parameters
+        assemblyline = request.query_params.get('assemblyline')
+        machineId = request.query_params.get('machineId')
+        category = request.query_params.get('category')
+        alert_shift = request.query_params.get('alert_shift')
+
+        # Build the filter conditions
+        filters = Q()
+        if assemblyline:
+            filters &= Q(assemblyline=assemblyline)
+        if machineId:
+            filters &= Q(machineId=machineId)
+        if category:
+            filters &= Q(category=category)
+        if alert_shift:
+            filters &= Q(alert_shift=alert_shift)
+
+        # Apply filtering based on the constructed filters
+        filtered_data = AndonData.objects.filter(filters)
+
+        # Create a new workbook and add a worksheet
+        wb = openpyxl.Workbook()
+        ws = wb.active
+
+        # Add column headers to the worksheet and apply styles
+        header_row = ['Company', 'Location', 'Shopfloor', 'Assemblyline', 'Machine_id', 'Category', 'Sub Category', 'Alert Shift', 'Andon Alert', 'Andon Acknowledge', 'Andon Resolved', 'Total Breakdown']
+        header_font = Font(bold=True)
+        header_fill = PatternFill(start_color="CCCCCC", end_color="CCCCCC", fill_type="solid")
+        for col_num, column_title in enumerate(header_row, 1):
+            cell = ws.cell(row=1, column=col_num, value=column_title)
+            cell.font = header_font
+            cell.fill = header_fill
+            cell.alignment = Alignment(wrap_text=False)  # Prevent text wrapping
+
+        # Add data from the filtered queryset to the worksheet
+        for row_num, data in enumerate(filtered_data, 2):  # Start from row 2 (after header)
+            ws.append([data.company, data.location, data.shopfloor, data.assemblyline, data.machineId, data.category, data.sub_category, data.alert_shift, data.andon_alerts, data.andon_acknowledge, data.andon_resolved, data.total_time])
+
+        # AutoFit column width for all columns
+        for column_cells in ws.columns:
+            max_length = 0
+            column = column_cells[0].column_letter  # Get the column name (e.g., 'A', 'B', ...)
+            for cell in column_cells:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(cell.value)
+                except:
+                    pass
+            adjusted_width = (max_length + 2)  # Add extra padding
+            ws.column_dimensions[column].width = adjusted_width
+
+        # Save the workbook to a response
+        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response['Content-Disposition'] = 'attachment; filename=Andon_Data.xlsx'
+        wb.save(response)
+
+        return response

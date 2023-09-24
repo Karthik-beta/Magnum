@@ -12,6 +12,12 @@ export class AlertComponent implements OnInit {
   constructor(private service: SharedService) { }
 
 
+
+  AndonOpenAlertsList: any[] = [];
+  results: any[] = [];
+
+
+
   today_open_alerts: number = 0;
   total_open_alerts: number = 0;
   total_acknowledge_alerts: number = 0;
@@ -29,8 +35,9 @@ export class AlertComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.metricsData();
+    this.metricsData();
     this.checkDatabaseConnection();
+    this.AndonOpenAlerts();
   }
 
 
@@ -76,5 +83,15 @@ export class AlertComponent implements OnInit {
       this.databaseSubscription.unsubscribe();
     }
   }
+
+
+  AndonOpenAlerts() {
+    this.service.getAndonOpenAlerts().subscribe((data: any) => {
+      this.AndonOpenAlertsList = data;
+    }
+    );
+  }
+
+
 
 }

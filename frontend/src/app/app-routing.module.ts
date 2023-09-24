@@ -32,7 +32,7 @@ import { AlertComponent } from './alert/alert.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo:'/alert', pathMatch:'full'},
+  {path: '', redirectTo:'/login', pathMatch:'full'},
   {path: 'dashboard', component:DashboardComponent},
   {path: 'report', component:ReportComponent},
   {path: 'monthly', component:MonthreportComponent},
