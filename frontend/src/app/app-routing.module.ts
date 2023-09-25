@@ -29,6 +29,7 @@ import { MachineComponent } from './machine/machine.component';
 import { AssemblylineanalysisComponent } from './assemblylineanalysis/assemblylineanalysis.component';
 import { MachinewiseanalysisComponent } from './machinewiseanalysis/machinewiseanalysis.component';
 import { AlertComponent } from './alert/alert.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [

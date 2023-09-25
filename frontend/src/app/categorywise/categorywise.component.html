@@ -1,6 +1,6 @@
 
 
-<div class="container-fluid">
+<div class="container-fluid" style="font-size: small;">
   <div class="row justify-content-between">
       <div class="col-md-auto">
           <div class="dash-card shadow rounded">
@@ -77,7 +77,7 @@
           <div class="dash-card shadow rounded">
               <div class="card-body">
                 <p style="font-weight: bolder;">Open Alert</p>
-                <div><h5>0</h5></div>
+                <div><h5>{{ total_open_alerts }}</h5></div>
               </div>
           </div>
       </div>
@@ -85,7 +85,7 @@
           <div class="dash-card shadow rounded">
               <div class="card-body">
                 <p style="font-weight: bolder;">Closed Alert</p>
-                <div><h5>0</h5></div>
+                <div><h5>{{ total_closed_alerts }}</h5></div>
               </div>
           </div>
       </div>
@@ -95,8 +95,8 @@
 
 
 
-
-<div class="container-fluid mt-3 container-1 shadow rounded">
+<div class=""  *ngFor="let dataItem of ShopfloorList; let i = index">
+<div class="container-fluid mt-3 container-1 shadow rounded"  *ngIf="dataItem.category === 'QUALITY'">
   <div class="row">
     <div class="col-md-12 text-center mt-2">
       <h4>CATEGORY : QUALITY</h4>
@@ -106,11 +106,11 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-bell"></i></h5>
-            <div class="card-content-biege">
-            <p class="card-text" style="font-weight: bolder;">Shopfloor : BALL BEARING</p>
-            <p class="card-text">Machine ID : SGB CH5</p>
+            <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">
+            <p class="card-text" style="font-weight: bolder;">Shopfloor : {{ dataItem.shopfloor }}</p>
+            <p class="card-text">Machine ID : {{ dataItem.machineId }}</p>
             <p class="card-text">Status : Active</p>
-            <p class="card-text">Alert : Sep 11, 2023 4:57 PM</p>
+            <p class="card-text">Alert : {{ dataItem.andon_alerts }}</p>
             </div>
           </div>
         </div>
@@ -118,25 +118,26 @@
     </div>
   </div>
 </div>
+</div>
 
 
 
-
-<div class="container-fluid mt-3 container-1 shadow rounded">
+<div class="" *ngFor="let dataItem of ShopfloorList; let i = index">
+<div class="container-fluid mt-3 container-1 shadow rounded"  *ngFor="let dataItem of ShopfloorList; let i = index">
   <div class="row">
     <div class="col-md-12 text-center mt-2">
       <h4>CATEGORY : ENGINEERING</h4>
     </div>
     <div class="col-md-12">
       <div class="scrollable-cards">
-        <div class="card">
+        <div class="card" *ngIf="dataItem.category === 'ENGINEERING'">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-bell"></i></h5>
-            <div class="card-content-honeydew">
-            <p class="card-text" style="font-weight: bolder;">Shopfloor : BALL BEARING</p>
-            <p class="card-text">Machine ID : SHG2 CH5</p>
+            <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">
+            <p class="card-text" style="font-weight: bolder;">Shopfloor : {{ dataItem.shopfloor }}</p>
+            <p class="card-text">Machine ID : {{ dataItem.machineId }}</p>
             <p class="card-text">Status : Active</p>
-            <p class="card-text">Alert : Sep 11, 2023 3:30 PM</p>
+            <p class="card-text">Alert : {{ dataItem.andon_alerts }}</p>
             </div>
           </div>
         </div>
@@ -144,11 +145,13 @@
     </div>
   </div>
 </div>
+</div>
 
 
 
 
-<div class="container-fluid mt-3 container-1 shadow rounded">
+<div class="" *ngFor="let dataItem of ShopfloorList; let i = index">
+<div class="container-fluid mt-3 container-1 shadow rounded" *ngIf="dataItem.category === 'RESETTING'">
   <div class="row">
     <div class="col-md-12 text-center mt-2">
       <h4>CATEGORY : RESETTING</h4>
@@ -158,11 +161,11 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-bell"></i></h5>
-            <div class="card-content">
-            <p class="card-text" style="font-weight: bolder;">Shopfloor : BALL BEARING</p>
-            <p class="card-text">Machine ID : SSB2 CH5</p>
+            <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">
+            <p class="card-text" style="font-weight: bolder;">Shopfloor : {{ dataItem.shopfloor }}</p>
+            <p class="card-text">Machine ID : {{ dataItem.machineId }}</p>
             <p class="card-text">Status : Active</p>
-            <p class="card-text">Alert : Sep 11, 2023 4:30 PM</p>
+            <p class="card-text">Alert : {{ dataItem.andon_alerts }}</p>
             </div>
           </div>
         </div>
@@ -170,11 +173,12 @@
     </div>
   </div>
 </div>
+</div>
 
 
 
-
-<div class="container-fluid mt-3 container-1 shadow rounded">
+<div class="" *ngFor="let dataItem of ShopfloorList; let i = index">
+<div class="container-fluid mt-3 container-1 shadow rounded" *ngIf="dataItem.category === 'ELECT MAINT'">
   <div class="row">
     <div class="col-md-12 text-center mt-2">
       <h4>CATEGORY : ELECT MAINT</h4>
@@ -184,11 +188,11 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-bell"></i></h5>
-            <div class="card-content-slateblue">
-            <p class="card-text" style="font-weight: bolder;">Shopfloor : BALL BEARING</p>
-            <p class="card-text">Machine ID : SSB2 CH5</p>
+            <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">
+            <p class="card-text" style="font-weight: bolder;">Shopfloor : {{ dataItem.shopfloor }}</p>
+            <p class="card-text">Machine ID : {{ dataItem.machineId }}</p>
             <p class="card-text">Status : Active</p>
-            <p class="card-text">Alert : Sep 11, 2023 4:30 PM</p>
+            <p class="card-text">Alert : {{ dataItem.andon_alerts }}</p>
             </div>
           </div>
         </div>
@@ -196,11 +200,12 @@
     </div>
   </div>
 </div>
+</div>
 
 
 
-
-<div class="container-fluid mt-3 container-1 shadow rounded">
+<div class="" *ngFor="let dataItem of ShopfloorList; let i = index">
+<div class="container-fluid mt-3 container-1 shadow rounded" *ngIf="dataItem.category === 'MECH MAINT'">
   <div class="row">
     <div class="col-md-12 text-center mt-2">
       <h4>CATEGORY : MECH MAINT</h4>
@@ -210,11 +215,11 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-bell"></i></h5>
-            <div class="card-content-gray">
-            <p class="card-text" style="font-weight: bolder;">Shopfloor : BALL BEARING</p>
-            <p class="card-text">Machine ID : SPC (IR) CH5</p>
+            <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">
+            <p class="card-text" style="font-weight: bolder;">Shopfloor : {{ dataItem.shopfloor }}</p>
+            <p class="card-text">Machine ID : {{ dataItem.machineId }}</p>
             <p class="card-text">Status : Active</p>
-            <p class="card-text">Alert : Sep 11, 2023 4:30 PM</p>
+            <p class="card-text">Alert : {{ dataItem.andon_alerts }}</p>
             </div>
           </div>
         </div>

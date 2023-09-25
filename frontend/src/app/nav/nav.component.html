@@ -1,4 +1,3 @@
-<ng-container *ngIf="!isLoginPage">
 <div class="container-fluid shadow">
   <header class="d-flex flex-wrap justify-content-center py-2 mb-2 border-bottom ">
     <a href="/alert" class="d-flex align-items-center mb-4 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
@@ -23,7 +22,7 @@
             <a class="dropdown-item" routerLink="/alert"><i class="fas fa-industry"></i> Andon Plant Breakdown</a>
             <a class="dropdown-item" routerLink="/shopfloorwise"><i class="fas fa-wrench"></i> Andon Shopfloor Breakdown</a>
             <a class="dropdown-item" routerLink="/categorywise"><i class="fas fa-list-alt"></i> Andon Category Breakdown</a>
-            <a class="dropdown-item" routerLink="/dashboard"><i class="fas fa-exclamation-circle"></i> Andon Daily Breakdown</a>
+            <a class="dropdown-item" routerLink="/dashboard"><i class="fas fa-exclamation-circle"></i> Andon Alerts</a>
           </div>
         </li>
       <!-- <li class="nav-item"><a routerLink="/employee" class="nav-link link-body-emphasis" aria-current="page"><i class="bi bi-person-fill-add"></i>  Onboarding</a></li> -->
@@ -69,7 +68,7 @@
   <p-toast></p-toast>
   <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
-</ng-container>
+
 
 
 

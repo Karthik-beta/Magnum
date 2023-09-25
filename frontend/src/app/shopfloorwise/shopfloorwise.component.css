@@ -27,6 +27,7 @@
 
 .custom-select {
   background-color: gainsboro;
+  font-size: small;
   /* background-color: rgb(105, 144, 184); */
   color: #000000; /* Set the text color */
   border-color: #ccc; /* Set the border color */

@@ -18,24 +18,23 @@ export class LoginComponent {
     password: ''
   };
 
-  isLoginPage: boolean = false;
 
   constructor(private http: HttpClient, private router: Router, private sharedService: SharedService) {}
 
 
   ngOnInit(): void {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        // Determine if the user is on the login page
-        this.isLoginPage = this.router.url.includes('/login');
-        this.sharedService.setIsLoginPage(this.isLoginPage);
-      }
-    });
+  //   this.router.events.subscribe((event) => {
+  //     if (event instanceof NavigationEnd) {
+  //       // Determine if the user is on the login page
+  //       this.isLoginPage = this.router.url.includes('/login');
+  //       this.sharedService.setIsLoginPage(this.isLoginPage);
+  //     }
+  //   });
 
-    // Subscribe to changes in isLoginPage
-    this.sharedService.isLoginPage$.subscribe((value) => {
-      this.isLoginPage = value;
-    });
+  //   // Subscribe to changes in isLoginPage
+  //   this.sharedService.isLoginPage$.subscribe((value) => {
+  //     this.isLoginPage = value;
+  //   });
   }
 
 

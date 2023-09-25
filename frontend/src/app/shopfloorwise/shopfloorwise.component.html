@@ -1,4 +1,4 @@
-<div class="container-fluid col-md-12">
+<div class="container-fluid col-md-12" style="font-size: small;">
   <div class="row justify-content-between" >
       <div class="col-md-auto">
           <div class="dash-card shadow rounded">
@@ -75,7 +75,7 @@
           <div class="dash-card shadow rounded">
               <div class="card-body">
                 <p style="font-weight: bolder;">Open Alert</p>
-                <div><h5>0</h5></div>
+                <div><h5>{{ total_open_alerts }}</h5></div>
               </div>
           </div>
       </div>
@@ -83,7 +83,7 @@
           <div class="dash-card shadow rounded">
               <div class="card-body">
                 <p style="font-weight: bolder;">Closed Alert</p>
-                <div><h5>0</h5></div>
+                <div><h5>{{ total_closed_alerts }}</h5></div>
               </div>
           </div>
       </div>

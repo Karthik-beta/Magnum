@@ -27,7 +27,7 @@ class Command(BaseCommand):
                 if entry.alert_value == 1:
                     if entry.machine_id + entry.breakdown_alert + entry.channel_id not in processed_entries:
                         # Create or update an AndonData entry for alert_value = 1 within the last 30 days
-                        andon_entry = AndonData.objects.update_or_create(
+                        andon_entry, created = AndonData.objects.update_or_create(
                             machineId=entry.machine_id,
                             category=entry.breakdown_alert,
                             assemblyline=entry.channel_id,
@@ -37,17 +37,18 @@ class Command(BaseCommand):
                         )
 
                         # Calculate and set the alert_shift
-                        andon_alert_time = datetime.strptime(andon_entry.andon_alerts, '%Y-%m-%d %H:%M:%S')
-                        if 6 <= andon_alert_time.hour < 14:
-                            andon_entry.alert_shift = "FS"
-                        elif 14 <= andon_alert_time.hour < 22:
-                            andon_entry.alert_shift = "SS"
-                        elif 22 <= andon_alert_time.hour < 6:
-                            andon_entry.alert_shift = "NS"
+                        if created:
+                            andon_alert_time = datetime.strptime(andon_entry.andon_alerts, '%Y-%m-%d %H:%M:%S')
+                            if 6 <= andon_alert_time.hour < 14:
+                                andon_entry.alert_shift = "FS"
+                            elif 14 <= andon_alert_time.hour < 22:
+                                andon_entry.alert_shift = "SS"
+                            elif 22 <= andon_alert_time.hour < 6:
+                                andon_entry.alert_shift = "NS"
                         
-                        andon_entry.save()
+                            andon_entry.save()
 
-                        processed_entries.add(entry.machine_id + entry.breakdown_alert + entry.channel_id)
+                            processed_entries.add(entry.machine_id + entry.breakdown_alert + entry.channel_id)
 
                 elif entry.alert_value == 2:
                     if entry.machine_id + entry.breakdown_alert + entry.channel_id in processed_entries:

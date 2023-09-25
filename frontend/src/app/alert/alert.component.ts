@@ -93,5 +93,25 @@ export class AlertComponent implements OnInit {
   }
 
 
+  calculateTotalTime(andonAlerts: string): string {
+    const andonAlertsTime = new Date(andonAlerts); // Convert the string to a Date object
+    const currentTime = new Date(); // Get the current time
+
+    // Calculate the time difference in milliseconds
+    const timeDifference = currentTime.getTime() - andonAlertsTime.getTime();
+
+    // Calculate hours, minutes, and seconds
+    const hours = Math.floor(timeDifference / 3600000); // 1 hour = 3600000 milliseconds
+    const minutes = Math.floor((timeDifference % 3600000) / 60000); // 1 minute = 60000 milliseconds
+    const seconds = Math.floor((timeDifference % 60000) / 1000); // 1 second = 1000 milliseconds
+
+    // Create a formatted string for the total time
+    const formattedTime = `${hours}h ${minutes}m ${seconds}s`;
+
+    return formattedTime;
+  }
+
+
+
 
 }

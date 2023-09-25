@@ -27,6 +27,7 @@
 
 .custom-select {
   background-color: gainsboro;
+  font-size: small;
   /* background-color: rgb(105, 144, 184); */
   color: #000000; /* Set the text color */
   border-color: #ccc; /* Set the border color */
@@ -74,7 +75,7 @@
   font-size: 0.8em;
 }
 
-.card-content-gray {
+.card-content {
   background-color: #ccc;
   padding: 15px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;

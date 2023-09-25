@@ -24,6 +24,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedService } from './shared.service';
+import { AuthGuard } from './auth.guard';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavComponent } from './nav/nav.component';
@@ -121,6 +122,7 @@ import { AlertComponent } from './alert/alert.component';
     MessageService,
     ConfirmationService,
     SharedService,
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })

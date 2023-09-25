@@ -249,7 +249,7 @@ class AndonMetricsView(View):
         total_open_alerts = AndonData.objects.filter(andon_resolved__isnull=True).count()
         
         # Total acknowledge alerts
-        total_acknowledge_alerts = AndonData.objects.filter(andon_acknowledge=True, andon_resolved__isnull=True).count()
+        total_acknowledge_alerts = AndonData.objects.filter(Q(andon_alerts__isnull=False) & Q(andon_acknowledge__isnull=False) & Q(andon_resolved__isnull=True)).count()
         
         # Today open alerts
         today_open_alerts = AndonData.objects.filter(andon_alerts__contains=date.today().strftime("%Y-%m-%d"), andon_resolved__isnull=True).count()
@@ -271,6 +271,9 @@ class AndonMetricsView(View):
 
         # Total number of alerts
         total_alerts = AndonData.objects.all().count()
+
+        # Total closed alerts
+        total_closed_alerts = AndonData.objects.exclude(andon_resolved__isnull=True).count()
         
         # Create a JSON response with the calculated metrics
         response_data = {
@@ -283,6 +286,7 @@ class AndonMetricsView(View):
             "total_mech_maint_alerts": total_mech_maint_alerts,
             "total_elect_maint_alerts": total_elect_maint_alerts,
             "total_alerts": total_alerts,
+            "total_closed_alerts": total_closed_alerts,
         }
         
         return JsonResponse(response_data)
