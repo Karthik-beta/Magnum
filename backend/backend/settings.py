@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'authApp',
     'rest_framework',
     'corsheaders',
-    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -102,9 +101,9 @@ DATABASES = {
 
 AUTH_USER_MODEL = 'authApp.User'
 
-CRONJOBS = [
-    ('*/5 * * * *', 'skf.management.commands.data3')
-]
+# CRONJOBS = [
+#     ('*/5 * * * *', 'skf.management.commands.data3')
+# ]
 
 
 # USE_TZ = False
