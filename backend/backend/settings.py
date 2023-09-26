@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'skf_2',
+        'NAME': 'skf',
         'USER': 'postgres',
         'PASSWORD': 'password123',
         'HOST': 'localhost',

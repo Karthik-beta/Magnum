@@ -264,10 +264,10 @@ class AndonMetricsView(View):
         total_quality_alerts = AndonData.objects.filter(category="QUALITY", andon_resolved__isnull=True).count()
         
         # Total mech maint alerts
-        total_mech_maint_alerts = AndonData.objects.filter(category="MECH MAINT", andon_resolved__isnull=True).count()
+        total_mech_maint_alerts = AndonData.objects.filter(category="MECHMAINT", andon_resolved__isnull=True).count()
         
         # Total elect maint alerts
-        total_elect_maint_alerts = AndonData.objects.filter(category="ELECT MAINT", andon_resolved__isnull=True).count()
+        total_elect_maint_alerts = AndonData.objects.filter(category="ELECTMAINT", andon_resolved__isnull=True).count()
 
         # Total number of alerts
         total_alerts = AndonData.objects.all().count()
@@ -387,7 +387,7 @@ class DownloadAndonData(APIView):
         ws = wb.active
 
         # Add column headers to the worksheet and apply styles
-        header_row = ['Company', 'Location', 'Shopfloor', 'Assemblyline', 'Machine_id', 'Category', 'Sub Category', 'Alert Shift', 'Andon Alert', 'Andon Acknowledge', 'Andon Resolved', 'Total Breakdown']
+        header_row = ['Ticket','Company', 'Location', 'Shopfloor', 'Assemblyline', 'Machine_id', 'Category', 'Sub Category', 'Alert Shift', 'Andon Alert', 'Andon Acknowledge', 'Andon Resolved', 'Total Breakdown']
         header_font = Font(bold=True)
         header_fill = PatternFill(start_color="CCCCCC", end_color="CCCCCC", fill_type="solid")
         for col_num, column_title in enumerate(header_row, 1):
@@ -398,7 +398,7 @@ class DownloadAndonData(APIView):
 
         # Add data from the filtered queryset to the worksheet
         for row_num, data in enumerate(filtered_data, 2):  # Start from row 2 (after header)
-            ws.append([data.company, data.location, data.shopfloor, data.assemblyline, data.machineId, data.category, data.sub_category, data.alert_shift, data.andon_alerts, data.andon_acknowledge, data.andon_resolved, data.total_time])
+            ws.append([data.id, data.company, data.location, data.shopfloor, data.assemblyline, data.machineId, data.category, data.sub_category, data.alert_shift, data.andon_alerts, data.andon_acknowledge, data.andon_resolved, data.total_time])
 
         # AutoFit column width for all columns
         for column_cells in ws.columns:
