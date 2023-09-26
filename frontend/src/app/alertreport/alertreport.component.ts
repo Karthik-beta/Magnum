@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
+import { TableLazyLoadEvent } from 'primeng/table';
 import { MessageService, ConfirmationService, ConfirmEventType } from 'primeng/api';
 
 @Component({
@@ -49,7 +50,7 @@ export class AlertreportComponent implements OnInit {
   }
 
 
-  refreshAndList() {
+  refreshAndList(): void {
     this.loading = true;
 
     const params = {
@@ -61,15 +62,34 @@ export class AlertreportComponent implements OnInit {
       this.andonList = data.results; // Assuming your API response has a 'results' property
       this.totalRecords = data.count;   // Assuming your API response has a 'count' property
       this.loading = false;
+
     });
   }
 
 
+
   onPageChange(event: any): void {
     this.rows = event.rows;
-    this.currentPage = event.page;
+    this.currentPage = event.page ;
 
     this.refreshAndList();
+  }
+
+  loadLogs(event: TableLazyLoadEvent): void {
+    this.loading = true;
+
+    const params: any = {
+      page: ((event.first || 0) / (event.rows || 10) + 1).toString(),
+      page_size: (event.rows || 10).toString(),
+      sortField: event.sortField || '',
+      sortOrder: event.sortOrder === 1 ? 'asc' : 'desc',
+    };
+
+    this.service.getAndList(params).subscribe((data: any) => {
+      this.andonList = data.results;
+      this.totalRecords = data.count;
+      this.loading = false;
+    });
   }
 
   onCategoryChange() {

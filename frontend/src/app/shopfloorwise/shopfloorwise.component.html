@@ -100,8 +100,8 @@
       <h4>SHOPFLOOR : BALL BEARING</h4>
     </div>
     <div class="col-md-12">
-      <div class="scrollable-cards" *ngFor="let dataItem of ShopfloorList; let i = index">
-        <div class="card">
+      <div class="scrollable-cards">
+        <div class="card" *ngFor="let dataItem of ShopfloorList; let i = index">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-bell"></i></h5>
             <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">

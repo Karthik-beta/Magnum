@@ -158,10 +158,15 @@ export class SharedService {
   //   return this.http.get(`${this.baseUrl}/andon/`, { params: httpParams });
   // }
 
-  getAndList(params: { [key: string]: any }): Observable<any> {
-    const httpParams = Object.keys(params).reduce((prevParams, key) => {
-      return prevParams.append(key, params[key]);
-    }, new HttpParams());
+
+  getAndList(params: any): Observable<any> {
+    let httpParams = new HttpParams();
+
+    for (const key in params) {
+      if (params.hasOwnProperty(key)) {
+        httpParams = httpParams.append(key, params[key]);
+      }
+    }
 
     return this.http.get(`${this.baseUrl}/andon/`, { params: httpParams });
   }

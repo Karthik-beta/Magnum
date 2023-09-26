@@ -22,6 +22,14 @@ export class CategorywiseComponent implements OnInit {
 
 
 
+  qualityItems: any[] = [];
+  engineeringItems: any[] = [];
+  resettingItems: any[] = [];
+  electmaint: any[] = [];
+  mechmaint: any[] = [];
+
+
+
   today_open_alerts: number = 0;
   total_open_alerts: number = 0;
   total_acknowledge_alerts: number = 0;
@@ -51,13 +59,30 @@ export class CategorywiseComponent implements OnInit {
 
   shopfloorwiseData() {
     this.service.getShopfloorwiseData().subscribe((data: any) => {
+      // Store the original data in this.ShopfloorList
       this.ShopfloorList = data;
-      // this.shopfloor = data.shopfloor;
-      // this.machineId = data.machineId;
-      // this.category = data.category;
-      // this.andon_alerts = data.andon_alerts;
+      this.shopfloor = data.shopfloor;
+      this.machineId = data.machineId;
+      this.category = data.category;
+      this.andon_alerts = data.andon_alerts;
+
+      // Filter items with category "QUALITY" and store them in qualityItems
+      this.qualityItems = this.ShopfloorList.filter(item => item.category === 'QUALITY');
+
+      // Filter items with category "ENGINEERING" and store them in engineeringItems
+      this.engineeringItems = this.ShopfloorList.filter(item => item.category === 'ENGINEERING');
+
+      // Filter items with category "RESETTING" and store them in resettingItems
+      this.resettingItems = this.ShopfloorList.filter(item => item.category === 'RESETTING');
+
+      // Filter items with category "ELECT MAINT" and store them in electmaint
+      this.electmaint = this.ShopfloorList.filter(item => item.category === 'ELECTMAINT');
+
+      // Filter items with category "MECH MAINT" and store them in mechmaint
+      this.mechmaint = this.ShopfloorList.filter(item => item.category === 'MECHMAINT');
     });
   }
+
 
 
   metricsData() {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SharedService } from './shared.service';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +10,17 @@ import { SharedService } from './shared.service';
 export class AppComponent {
   // title = 'frontend';
 
-  isLoginPage: boolean = true; // Set to true by default
+  isLoginPage: boolean = false;
 
-  constructor(private sharedService: SharedService) {}
-
-  ngOnInit(): void {
-    this.sharedService.isLoginPage$.subscribe(isLoginPage => {
-      this.isLoginPage = isLoginPage;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Check the current route's path
+        const currentRoute = this.activatedRoute.firstChild;
+        if (currentRoute) {
+          this.isLoginPage = currentRoute.snapshot.routeConfig?.path === 'login';
+        }
+      }
     });
   }
 

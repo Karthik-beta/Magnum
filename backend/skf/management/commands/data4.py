@@ -11,6 +11,24 @@ def calculate_breakdown_time(start_time_str, end_time_str):
     duration = end_time - start_time
     return str(duration)[:19]
 
+# Function to calculate response time
+def calculate_response_time(alert_time_str, acknowledge_time_str):
+    if alert_time_str and acknowledge_time_str:
+        alert_time = datetime.strptime(alert_time_str, '%Y-%m-%d %H:%M:%S')
+        acknowledge_time = datetime.strptime(acknowledge_time_str, '%Y-%m-%d %H:%M:%S')
+        response_duration = acknowledge_time - alert_time
+        return str(response_duration)[:19]
+    return None
+
+# Function to calculate repair time
+def calculate_repair_time(resolved_time_str, acknowledge_time_str):
+    if resolved_time_str and acknowledge_time_str:
+        resolved_time = datetime.strptime(resolved_time_str, '%Y-%m-%d %H:%M:%S')
+        acknowledge_time = datetime.strptime(acknowledge_time_str, '%Y-%m-%d %H:%M:%S')
+        repair_duration = resolved_time - acknowledge_time
+        return str(repair_duration)[:19]
+    return None
+
 
 def delete_duplicate_breakdownhmi_records():
     with connection.cursor() as cursor:
@@ -72,6 +90,19 @@ class Command(BaseCommand):
                         
                             andon_entry.save()
 
+                        # Calculate and set response_time 
+                        if andon_entry.andon_alerts and andon_entry.andon_acknowledge:
+                            andon_entry.response_time = calculate_response_time(andon_entry.andon_alerts, andon_entry.andon_acknowledge)
+                            
+
+                        # Calculate and set repair_time
+                        if andon_entry.andon_acknowledge and andon_entry.andon_resolved:
+                            andon_entry.repair_time = calculate_repair_time(andon_entry.andon_resolved, andon_entry.andon_acknowledge)
+                            
+                        # Save the andon_entry after both conditions have been evaluated
+                        andon_entry.save()
+
+
                         processed_entries.add(entry.machine_id + entry.breakdown_alert + entry.channel_id)
 
                 elif entry.alert_value == 2:
@@ -97,6 +128,7 @@ class Command(BaseCommand):
                             category=entry.breakdown_alert,
                             assemblyline=entry.channel_id
                         )
+
                         if andon_entry.andon_resolved is None or str(entry.timestamp) > andon_entry.andon_resolved:
                             andon_entry.andon_resolved = str(entry.timestamp)[:19]
                             andon_entry.save()

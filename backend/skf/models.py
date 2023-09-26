@@ -68,6 +68,8 @@ class AndonData(models.Model):
     andon_alerts = models.CharField(max_length=100,null=True, blank=True)
     andon_acknowledge = models.CharField(max_length=100,null=True, blank=True)
     andon_resolved = models.CharField(max_length=100,null=True, blank=True)
+    response_time = models.CharField(max_length=100, blank=True, null=True)
+    repair_time = models.CharField(max_length=100, blank=True, null=True)
     total_time = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:

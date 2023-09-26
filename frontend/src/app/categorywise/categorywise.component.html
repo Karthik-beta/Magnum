@@ -37,7 +37,7 @@
               <div>
                 <select class="form-control form-control-sm custom-select" placeholder="Select Options">
                   <option value="" disabled>- All -</option>
-                  <option selected>CHANNEL 5</option>
+                  <option selected>CH5</option>
                   <!-- <option>Line 2</option> -->
                 </select>
               </div>
@@ -95,15 +95,15 @@
 
 
 
-<div class=""  *ngFor="let dataItem of ShopfloorList; let i = index">
-<div class="container-fluid mt-3 container-1 shadow rounded"  *ngIf="dataItem.category === 'QUALITY'">
+
+<div class="container-fluid mt-3 container-1 shadow rounded">
   <div class="row">
     <div class="col-md-12 text-center mt-2">
       <h4>CATEGORY : QUALITY</h4>
     </div>
     <div class="col-md-12">
       <div class="scrollable-cards">
-        <div class="card">
+        <div class="card" *ngFor="let dataItem of qualityItems; let i = index">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-bell"></i></h5>
             <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">
@@ -118,19 +118,20 @@
     </div>
   </div>
 </div>
-</div>
 
 
 
-<div class="" *ngFor="let dataItem of ShopfloorList; let i = index">
-<div class="container-fluid mt-3 container-1 shadow rounded"  *ngFor="let dataItem of ShopfloorList; let i = index">
+
+
+
+<div class="container-fluid mt-3 container-1 shadow rounded">
   <div class="row">
     <div class="col-md-12 text-center mt-2">
       <h4>CATEGORY : ENGINEERING</h4>
     </div>
     <div class="col-md-12">
       <div class="scrollable-cards">
-        <div class="card" *ngIf="dataItem.category === 'ENGINEERING'">
+        <div class="card" *ngFor="let dataItem of engineeringItems; let i = index">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-bell"></i></h5>
             <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">
@@ -145,20 +146,19 @@
     </div>
   </div>
 </div>
-</div>
 
 
 
 
-<div class="" *ngFor="let dataItem of ShopfloorList; let i = index">
-<div class="container-fluid mt-3 container-1 shadow rounded" *ngIf="dataItem.category === 'RESETTING'">
+
+<div class="container-fluid mt-3 container-1 shadow rounded">
   <div class="row">
     <div class="col-md-12 text-center mt-2">
       <h4>CATEGORY : RESETTING</h4>
     </div>
     <div class="col-md-12">
       <div class="scrollable-cards">
-        <div class="card">
+        <div class="card" *ngFor="let dataItem of resettingItems; let i = index">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-bell"></i></h5>
             <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">
@@ -173,19 +173,18 @@
     </div>
   </div>
 </div>
-</div>
 
 
 
-<div class="" *ngFor="let dataItem of ShopfloorList; let i = index">
-<div class="container-fluid mt-3 container-1 shadow rounded" *ngIf="dataItem.category === 'ELECT MAINT'">
+
+<div class="container-fluid mt-3 container-1 shadow rounded">
   <div class="row">
     <div class="col-md-12 text-center mt-2">
       <h4>CATEGORY : ELECT MAINT</h4>
     </div>
     <div class="col-md-12">
       <div class="scrollable-cards">
-        <div class="card">
+        <div class="card" *ngFor="let dataItem of electmaint; let i = index">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-bell"></i></h5>
             <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">
@@ -200,19 +199,18 @@
     </div>
   </div>
 </div>
-</div>
 
 
 
-<div class="" *ngFor="let dataItem of ShopfloorList; let i = index">
-<div class="container-fluid mt-3 container-1 shadow rounded" *ngIf="dataItem.category === 'MECH MAINT'">
+
+<div class="container-fluid mt-3 container-1 shadow rounded">
   <div class="row">
     <div class="col-md-12 text-center mt-2">
       <h4>CATEGORY : MECH MAINT</h4>
     </div>
     <div class="col-md-12">
       <div class="scrollable-cards">
-        <div class="card">
+        <div class="card" *ngFor="let dataItem of mechmaint; let i = index">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-bell"></i></h5>
             <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">

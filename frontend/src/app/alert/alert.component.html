@@ -314,6 +314,7 @@
 <table class="table table-striped table-hover">
   <thead>
     <tr>
+      <th>#</th>
       <th>Ticket</th>
       <!-- <th>Login</th> -->
       <th>Company</th>
@@ -332,7 +333,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let dataItem of AndonOpenAlertsList">
+    <tr *ngFor="let dataItem of AndonOpenAlertsList; let i = index">
+      <td>{{ i + 1 }}</td>
       <td>{{ dataItem.id }}</td>
       <td>{{ dataItem.company }}</td>
       <td>{{ dataItem.location }}</td>

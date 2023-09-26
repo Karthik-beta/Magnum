@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SharedService } from '../shared.service';
+import { TableLazyLoadEvent } from 'primeng/table';
 import { ApexChart, ApexDataLabels, ApexNonAxisChartSeries, ApexTitleSubtitle } from 'ng-apexcharts';
 import { MessageService, ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { Subscription } from 'rxjs';
@@ -65,6 +66,23 @@ export class DashboardComponent implements OnInit {
     this.service.getAndList(params).subscribe((data: any) => {
       this.andonList = data.results; // Assuming your API response has a 'results' property
       this.totalRecords = data.count;   // Assuming your API response has a 'count' property
+      this.loading = false;
+    });
+  }
+
+  loadLogs(event: TableLazyLoadEvent): void {
+    this.loading = true;
+
+    const params: any = {
+      page: ((event.first || 0) / (event.rows || 10) + 1).toString(),
+      page_size: (event.rows || 10).toString(),
+      sortField: event.sortField || '',
+      sortOrder: event.sortOrder === 1 ? 'asc' : 'desc',
+    };
+
+    this.service.getAndList(params).subscribe((data: any) => {
+      this.andonList = data.results;
+      this.totalRecords = data.count;
       this.loading = false;
     });
   }
