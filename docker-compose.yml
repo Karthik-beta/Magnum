@@ -23,6 +23,10 @@ services:
     restart: always  # Add this line for automatic restart
     #   - database  # If you have a separate database container
 
+networks:
+  WIP_network:
+    driver: bridge
+
 
   # If you have a separate database container, you can define it here.
   # Example for PostgreSQL:
