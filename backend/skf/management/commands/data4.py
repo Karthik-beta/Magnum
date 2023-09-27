@@ -30,22 +30,22 @@ def calculate_repair_time(resolved_time_str, acknowledge_time_str):
     return None
 
 
-def delete_duplicate_breakdownhmi_records():
-    with connection.cursor() as cursor:
-        cursor.execute("""
-            WITH Duplicates AS (
-            SELECT machine_id, channel_id, breakdown_alert, alert_value, "timestamp",
-                ROW_NUMBER() OVER (PARTITION BY machine_id, channel_id, breakdown_alert, alert_value ORDER BY "timestamp") AS row_num
-            FROM public.breakdown_hmi
-        )
-        DELETE FROM public.breakdown_hmi
-        WHERE (machine_id, channel_id, breakdown_alert, alert_value, "timestamp") 
-            IN (
-                SELECT machine_id, channel_id, breakdown_alert, alert_value, "timestamp"
-                FROM Duplicates
-                WHERE row_num > 1
-            );
-        """)
+# def delete_duplicate_breakdownhmi_records():
+#     with connection.cursor() as cursor:
+#         cursor.execute("""
+#             WITH Duplicates AS (
+#             SELECT machine_id, channel_id, breakdown_alert, alert_value, "timestamp",
+#                 ROW_NUMBER() OVER (PARTITION BY machine_id, channel_id, breakdown_alert, alert_value ORDER BY "timestamp") AS row_num
+#             FROM public.breakdown_hmi
+#         )
+#         DELETE FROM public.breakdown_hmi
+#         WHERE (machine_id, channel_id, breakdown_alert, alert_value, "timestamp") 
+#             IN (
+#                 SELECT machine_id, channel_id, breakdown_alert, alert_value, "timestamp"
+#                 FROM Duplicates
+#                 WHERE row_num > 1
+#             );
+#         """)
 
 
 
@@ -53,7 +53,7 @@ class Command(BaseCommand):
     help = 'Process alert values in breakdown_hmi table and update or create andon_data table entries for the last 30 days'
 
     def handle(self, *args, **options):
-        delete_duplicate_breakdownhmi_records()  # Call the function to delete duplicate records
+        # delete_duplicate_breakdownhmi_records()  # Call the function to delete duplicate records
 
 
         with transaction.atomic():

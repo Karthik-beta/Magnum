@@ -106,7 +106,8 @@ export class AlertComponent implements OnInit {
     const seconds = Math.floor((timeDifference % 60000) / 1000); // 1 second = 1000 milliseconds
 
     // Create a formatted string for the total time
-    const formattedTime = `${hours}h ${minutes}m ${seconds}s`;
+    // const formattedTime = `${hours}h ${minutes}m ${seconds}s`;
+    const formattedTime = `${hours}h ${minutes}m`;
 
     return formattedTime;
   }
