@@ -6,7 +6,9 @@ services:
       context: ./frontend
       dockerfile: Dockerfile  # Use your Angular Dockerfile
     ports:
-      - "9191:9191"  # Map port 80 on the host to port 80 in the container
+      - "9191:9191" # Map port 80 on the host to port 80 in the container
+    networks:
+      - WIP_network 
     restart: always  # Add this line for automatic restart
 
   backend:
@@ -15,9 +17,12 @@ services:
       dockerfile: Dockerfile  # Use your Django Dockerfile
     ports:
       - "8000:8000"  # Map port 8000 on the host to port 8000 in the container
+    networks:
+      - WIP_network
     # depends_on:
     restart: always  # Add this line for automatic restart
     #   - database  # If you have a separate database container
+
 
   # If you have a separate database container, you can define it here.
   # Example for PostgreSQL:
