@@ -23,7 +23,7 @@ FROM nginx:stable
 COPY --from=build /app/dist/frontend /usr/share/nginx/html
 
 # Expose port 80
-EXPOSE 2020
+EXPOSE 80
 
 # Start Nginx server
 CMD ["nginx", "-g", "daemon off;"]
