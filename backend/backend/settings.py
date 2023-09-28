@@ -82,15 +82,28 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'skf',
+#         'USER': 'postgres',
+#         'PASSWORD': 'password123',
+#         'HOST': 'localhost',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'skf',
         'USER': 'postgres',
-        'PASSWORD': 'password123',
-        'HOST': 'localhost',
+        'PASSWORD': '4k$ag9teWAHP',
+        'HOST': 'como.civut9vpxaut.ap-southeast-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_AUTHENTICATION_CLASSES': (
