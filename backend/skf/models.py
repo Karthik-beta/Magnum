@@ -59,7 +59,7 @@ class AndonData(models.Model):
     id = models.AutoField(primary_key=True)
     company = models.CharField(max_length=10, default='SKF')
     location = models.CharField(max_length=10, default='BLR')
-    shopfloor = models.CharField(max_length=30, default='BALL BEARING')
+    shopfloor = models.CharField(max_length=30, default='GRINDING')
     assemblyline = models.CharField(max_length=30)
     machineId = models.CharField(max_length=50)
     category = models.CharField(max_length=50)
