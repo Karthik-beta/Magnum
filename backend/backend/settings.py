@@ -98,8 +98,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'skf',
         'USER': 'postgres',
-        'PASSWORD': '4k$ag9teWAHP',
-        'HOST': 'como.civut9vpxaut.ap-southeast-1.rds.amazonaws.com',
+        'PASSWORD': 'password123',
+        'HOST': 'mydbinstance.c2nchf8k8oui.us-east-2.rds.amazonaws.com',
         'PORT': '5432',
     }
 }

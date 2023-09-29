@@ -33,7 +33,7 @@ import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
-  {path: '', redirectTo:'/login', pathMatch:'full'},
+  {path: '', redirectTo:'/alert', pathMatch:'full'},
   {path: 'dashboard', component:DashboardComponent},
   {path: 'report', component:ReportComponent},
   {path: 'monthly', component:MonthreportComponent},
