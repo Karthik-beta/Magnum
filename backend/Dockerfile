@@ -17,6 +17,15 @@ RUN pip install -r requirements.txt
 # Copy the current directory contents into the container at /app
 COPY . /app/
 
+# Add this line to include the cron job
+RUN echo '*/5 * * * * root /usr/local/bin/python /app/manage.py data4' > /etc/cron.d/data4_cron
+
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/mycron
+
+# Create the log file to be able to run tail
+RUN touch /var/log/cron.log
+
 # Expose port 8000 to the outside world
 EXPOSE 8000
 
