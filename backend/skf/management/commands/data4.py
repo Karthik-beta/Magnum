@@ -81,11 +81,11 @@ class Command(BaseCommand):
                         # Calculate and set the alert_shift
                         if created:
                             andon_alert_time = datetime.strptime(andon_entry.andon_alerts, '%Y-%m-%d %H:%M:%S')
-                            if 6 <= andon_alert_time.hour < 14:
+                            if 6 <= andon_alert_time.hour < 15:
                                 andon_entry.alert_shift = "FS"
-                            elif 14 <= andon_alert_time.hour < 22:
+                            elif 14 <= andon_alert_time.hour < 23:
                                 andon_entry.alert_shift = "SS"
-                            elif 22 <= andon_alert_time.hour < 6:
+                            elif 22 <= andon_alert_time.hour < 7:
                                 andon_entry.alert_shift = "NS"
                         
                             andon_entry.save()
@@ -151,11 +151,11 @@ class Command(BaseCommand):
                         # Calculate and set the alert_shift
                         if created:
                             andon_alert_time = datetime.strptime(andon_entry.andon_alerts, '%Y-%m-%d %H:%M:%S')
-                            if 6 <= andon_alert_time.hour < 14:
+                            if 6 <= andon_alert_time.hour < 15:
                                 andon_entry.alert_shift = "FS"
-                            elif 14 <= andon_alert_time.hour < 22:
+                            elif 14 <= andon_alert_time.hour < 23:
                                 andon_entry.alert_shift = "SS"
-                            elif 22 <= andon_alert_time.hour < 6:
+                            elif 22 <= andon_alert_time.hour < 7:
                                 andon_entry.alert_shift = "NS"
                             
                             andon_entry.save()
