@@ -18,7 +18,8 @@ RUN pip install -r requirements.txt
 COPY . /app/
 
 # Add this line to include the cron job
-RUN echo '*/5 * * * * root /usr/local/bin/python /app/manage.py data4' > /etc/cron.d/data4_cron
+RUN echo '*/5 * * * * root /usr/local/bin/python /app/manage.py data4' > /etc/cron.d/mycron && \
+    chmod 0644 /etc/cron.d/mycron
 
 # Give execution rights on the cron job
 RUN chmod 0644 /etc/cron.d/mycron
