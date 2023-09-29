@@ -22,7 +22,6 @@ services:
     # depends_on:
     restart: always  # Add this line for automatic restart
     #   - database  # If you have a separate database container
-    command: /bin/bash -c "service cron start && python manage.py runserver 0.0.0.0:8000"
 
 # networks:
 #   WIP_network:
