@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'authApp',
     'rest_framework',
     'corsheaders',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
