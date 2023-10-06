@@ -115,9 +115,9 @@ DATABASES = {
 
 AUTH_USER_MODEL = 'authApp.User'
 
-# CRONJOBS = [
-#     ('*/2 * * * *', 'skf.management.commands.data4.Command')
-# ]
+CRONJOBS = [
+    ('*/1 * * * *', 'skf.management.commands.data4.Command')
+]
 
 
 # USE_TZ = False
