@@ -42,6 +42,8 @@ export class AlertComponent implements OnInit {
     // Call the calculateTotalTime function every 30 seconds
   setInterval(() => {
     this.calculateTotalTime('2022-01-01T00:00:00Z');
+    this.AndonOpenAlerts();
+    this.metricsData();
   }, 30000);
 
   }
