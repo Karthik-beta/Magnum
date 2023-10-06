@@ -111,7 +111,11 @@ class Command(BaseCommand):
                 # Calculate the repair time
                 repair_time = datetime.strptime(str(resolved_alert.timestamp)[:19], '%Y-%m-%d %H:%M:%S') - datetime.strptime(str(existing_alert.andon_acknowledge)[:19], '%Y-%m-%d %H:%M:%S')
                 existing_alert.repair_time = str(repair_time)
+                # Calculate the total time
+                total_time = datetime.strptime(str(resolved_alert.timestamp)[:19], '%Y-%m-%d %H:%M:%S') - datetime.strptime(str(existing_alert.andon_alerts)[:19], '%Y-%m-%d %H:%M:%S')
+                existing_alert.total_time = str(total_time)
                 existing_alert.save()
+        
 
         # Print a success message to the console
         self.stdout.write(self.style.SUCCESS('Successfully processed alert values and updated or created andon_data table entries for the last 30 days and newer ones.'))
