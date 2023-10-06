@@ -38,6 +38,12 @@ export class AlertComponent implements OnInit {
     this.metricsData();
     this.checkDatabaseConnection();
     this.AndonOpenAlerts();
+
+    // Call the calculateTotalTime function every 30 seconds
+  setInterval(() => {
+    this.calculateTotalTime('2022-01-01T00:00:00Z');
+  }, 30000);
+
   }
 
 
