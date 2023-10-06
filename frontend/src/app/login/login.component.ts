@@ -41,7 +41,7 @@ export class LoginComponent {
 
   onLogin() {
     // Send a POST request to your Django backend for authentication
-    const apiUrl = 'http://18.216.65.110:8000/api/login/';
+    const apiUrl = 'http://163.157.20.62:8000/api/login/';
 
     const observer: Observer<any> = {
       next: (response) => {

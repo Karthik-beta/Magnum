@@ -74,7 +74,6 @@ class AndonData(models.Model):
 
     class Meta:
         db_table = 'andon_data'
-        unique_together = ('machineId', 'category', 'assemblyline')
 
 class BreakdownHMI(models.Model):
     id = models.AutoField(primary_key=True)
@@ -86,6 +85,3 @@ class BreakdownHMI(models.Model):
 
     class Meta:
         db_table = 'breakdown_hmi'
-
-
-

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)tlau2@77de-$ik4u5oehak0u=@-g$xw6)%c&o%b+7ubrq_zw2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '18.216.65.110']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '163.157.20.62']
 
 
 # Application definition
@@ -100,7 +100,7 @@ DATABASES = {
         'NAME': 'skf',
         'USER': 'postgres',
         'PASSWORD': 'password123',
-        'HOST': 'mydbinstance.c2nchf8k8oui.us-east-2.rds.amazonaws.com',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -115,9 +115,9 @@ DATABASES = {
 
 AUTH_USER_MODEL = 'authApp.User'
 
-CRONJOBS = [
-    ('*/2 * * * *', 'skf.management.commands.data4.Command')
-]
+# CRONJOBS = [
+#     ('*/2 * * * *', 'skf.management.commands.data4.Command')
+# ]
 
 
 # USE_TZ = False
@@ -164,11 +164,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
-USE_TZ = True
+# USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

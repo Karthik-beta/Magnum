@@ -161,7 +161,7 @@ export class NavComponent implements OnInit {
 
   private logout() {
     // Make an HTTP POST request to your logout endpoint
-    this.http.post('http://18.216.65.110:8000/api/logout/', {}).subscribe({
+    this.http.post('http://163.157.20.62:8000/api/logout/', {}).subscribe({
       next: () => {
         // Clear session/token (implement your logic here)
 
