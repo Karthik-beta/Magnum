@@ -148,10 +148,14 @@
 
 
 <div class="week-container">
+  <div class="scale text-center" style="font-size: large; font-weight: bolder; flex: 1;">
+    <p class="mt-2">SKF ENGINEERING</p>
+  </div>
   <div class="">
-  <!-- Conditionally display an image -->
-<img *ngIf="databaseStatus === 'Database is connected.'" src="assets/images/database.png"  style="width:40px; height:40px" alt="Connected GIF">
-<img *ngIf="databaseStatus !== 'Database is connected.'" src="assets/images/disconnected.png" style="width:50px; height:50px" alt="Disconnected PNG"></div>
+    <!-- Conditionally display an image -->
+    <img *ngIf="databaseStatus === 'Database is connected.'" src="assets/images/database.png" style="width:40px; height:40px" alt="Connected GIF">
+    <img *ngIf="databaseStatus !== 'Database is connected.'" src="assets/images/disconnected.png" style="width:50px; height:50px" alt="Disconnected PNG">
+  </div>
   <div class="week">{{ databaseStatus }}</div>
 </div>
 

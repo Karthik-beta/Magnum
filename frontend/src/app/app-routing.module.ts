@@ -30,6 +30,11 @@ import { AssemblylineanalysisComponent } from './assemblylineanalysis/assemblyli
 import { MachinewiseanalysisComponent } from './machinewiseanalysis/machinewiseanalysis.component';
 import { AlertComponent } from './alert/alert.component';
 import { AuthGuard } from './auth.guard';
+import { AlertresettingComponent } from './alertresetting/alertresetting.component';
+import { AlertengineeringComponent } from './alertengineering/alertengineering.component';
+import { AlertelectComponent } from './alertelect/alertelect.component';
+import { AlertqualityComponent } from './alertquality/alertquality.component';
+import { AlertmechComponent } from './alertmech/alertmech.component';
 
 
 const routes: Routes = [
@@ -62,6 +67,11 @@ const routes: Routes = [
   {path: 'assembly_analysis', component:AssemblylineanalysisComponent},
   {path: 'machinewise_analysis', component:MachinewiseanalysisComponent},
   {path: 'alert', component:AlertComponent},
+  {path: 'alert_resetting', component:AlertresettingComponent},
+  {path: 'alert_engineering', component:AlertengineeringComponent},
+  {path: 'alert_elect', component:AlertelectComponent},
+  {path: 'alert_quality', component:AlertqualityComponent},
+  {path: 'alert_mech', component:AlertmechComponent},
 
 ];
 

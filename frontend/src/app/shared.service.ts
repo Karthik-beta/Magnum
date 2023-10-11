@@ -206,4 +206,24 @@ export class SharedService {
     return this.http.get<any[]>(`${this.baseUrl}/andon_open/`);
   }
 
+  getAndonOpenResettingAlerts():Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/andon_open_resetting/`);
+  }
+
+  getAndonOpenEngineeringAlerts():Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/andon_open_engineering/`);
+  }
+
+  getAndonOpenElectricalAlerts():Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/andon_open_electrical/`);
+  }
+
+  getAndonOpenQualityAlerts():Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/andon_open_quality/`);
+  }
+
+  getAndonOpenMechAlerts():Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/andon_open_mech/`);
+  }
+
 }

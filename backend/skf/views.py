@@ -419,3 +419,40 @@ class DownloadAndonData(APIView):
         wb.save(response)
 
         return response
+    
+
+class AndonDataOpenResettingListView(generics.ListAPIView):
+    serializer_class = AndonDataSerializer
+
+    def get_queryset(self):
+        return AndonData.objects.filter(andon_resolved__isnull=True, category="RESETTING")
+    
+
+
+class AndonDataOpenEngineeringListView(generics.ListAPIView):
+    serializer_class = AndonDataSerializer
+
+    def get_queryset(self):
+        return AndonData.objects.filter(andon_resolved__isnull=True, category="ENGINEERING")
+
+
+class AndonDataOpenElectListView(generics.ListAPIView):
+    serializer_class = AndonDataSerializer
+
+    def get_queryset(self):
+        return AndonData.objects.filter(andon_resolved__isnull=True, category="ELECT MAINT")
+    
+
+
+class AndonDataOpenQualityListView(generics.ListAPIView):
+    serializer_class = AndonDataSerializer
+
+    def get_queryset(self):
+        return AndonData.objects.filter(andon_resolved__isnull=True, category="QUALITY")
+    
+
+class AndonDataOpenMechListView(generics.ListAPIView):
+    serializer_class = AndonDataSerializer
+
+    def get_queryset(self):
+        return AndonData.objects.filter(andon_resolved__isnull=True, category="MECH MAINT")

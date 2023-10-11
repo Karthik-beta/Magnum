@@ -6,7 +6,8 @@ from skf.views import (BreakdownCategoryListCreateView,
                        ShiftListCreateView, CompanyListCreateView, LocationListCreateView,
                        ShopfloorListCreateView, AssemblylineListCreateView, MachineListCreateView, DownloadAndonData,
                        AndonDataListCreateView, DownloadBreakdownHMIData, AndonMetricsView, Shopfloorwise,
-                       check_database_connection, AndonDataOpenListView)
+                       check_database_connection, AndonDataOpenListView,
+                       AndonDataOpenResettingListView, AndonDataOpenEngineeringListView, AndonDataOpenElectListView, AndonDataOpenQualityListView, AndonDataOpenMechListView)
 
 
 urlpatterns = [
@@ -44,6 +45,16 @@ urlpatterns = [
     re_path(r'^check_database_connection/$', check_database_connection),
 
     re_path(r'^andon_open/$', AndonDataOpenListView.as_view()),
+
+    re_path(r'^andon_open_resetting/$', AndonDataOpenResettingListView.as_view()),
+
+    re_path(r'^andon_open_engineering/$', AndonDataOpenEngineeringListView.as_view()),
+
+    re_path(r'^andon_open_elect/$', AndonDataOpenElectListView.as_view()),
+
+    re_path(r'^andon_open_quality/$', AndonDataOpenQualityListView.as_view()),
+
+    re_path(r'^andon_open_mech/$', AndonDataOpenMechListView.as_view()),
 
     # path('register', RegisterView.as_view()),
     # path('login', LoginView.as_view()),

@@ -59,6 +59,11 @@ import { MachineComponent } from './machine/machine.component';
 import { AssemblylineanalysisComponent } from './assemblylineanalysis/assemblylineanalysis.component';
 import { MachinewiseanalysisComponent } from './machinewiseanalysis/machinewiseanalysis.component';
 import { AlertComponent } from './alert/alert.component';
+import { AlertresettingComponent } from './alertresetting/alertresetting.component';
+import { AlertengineeringComponent } from './alertengineering/alertengineering.component';
+import { AlertelectComponent } from './alertelect/alertelect.component';
+import { AlertqualityComponent } from './alertquality/alertquality.component';
+import { AlertmechComponent } from './alertmech/alertmech.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +101,11 @@ import { AlertComponent } from './alert/alert.component';
     AssemblylineanalysisComponent,
     MachinewiseanalysisComponent,
     AlertComponent,
+    AlertresettingComponent,
+    AlertengineeringComponent,
+    AlertelectComponent,
+    AlertqualityComponent,
+    AlertmechComponent,
   ],
   imports: [
     BrowserModule,

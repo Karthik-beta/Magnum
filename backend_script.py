@@ -1,31 +1,38 @@
-import os
 import subprocess
+import os
 import sys
+import getpass
+import shutil
 
 def run_command(command):
-    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    process = subprocess.Popen(command, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     output, error = process.communicate()
     return output, error
 
 def main():
-    # Change the path to your desired directory
-    magnum_path = r"D:\Magnum"
-    backend_path = os.path.join(magnum_path, "backend")
+    # Set the path to the desired directory
+    magnum_path = r"D:\Magnum\backend"
 
-    # Navigate to the specified directory
-    os.chdir(backend_path)
+    # Get the username of the current user
+    username = getpass.getuser()
 
-    # Command to run
-    command = "python manage.py runserver 0.0.0.0:8000"
+    # Create a batch file to run at startup
+    batch_script = f"""
+    @echo off
+    cd /d "{magnum_path}"
+    python manage.py runserver 0.0.0.0:8000
+    exit
+    """
 
-    # Run the command
-    output, error = run_command(command)
+    # Determine the startup directory based on the user's profile
+    startup_directory = os.path.join(os.getenv("APPDATA"), f"Microsoft\\Windows\\Start Menu\\Programs\\Startup")
+    startup_script_path = os.path.join(startup_directory, "MagnumStartupScript.bat")
 
-    if error:
-        print(f"Error: {error.decode('utf-8')}")
-        sys.exit(1)
-    else:
-        print(f"Command executed successfully:\n{output.decode('utf-8')}")
+    # Write the batch script to the startup directory
+    with open(startup_script_path, 'w') as batch_file:
+        batch_file.write(batch_script)
+
+    print(f"StartupScript added to startup for user: {username}")
 
 if __name__ == "__main__":
     main()
