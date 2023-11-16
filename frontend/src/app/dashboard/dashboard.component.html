@@ -75,7 +75,7 @@
         </div>
         <div class="col-md-4">
           <!-- Small Card 5 content -->
-          <div class="card smallCard shadow" style="background-color: #62CD37;">
+          <div routerLink="/alert_resetting" class="card smallCard shadow" style="background-color: #62CD37;">
             <!-- ... Small Card content ... -->
             <div class="text-center">
               <p class="card-subtitle">RESETTING</p>
@@ -86,11 +86,11 @@
         </div>
         <div class="col-md-4">
           <!-- Small Card 6 content -->
-          <div class="card smallCard shadow" style="background-color: #CD5C5D;">
+          <div routerLink="/alert_engineering" class="card smallCard shadow" style="background-color: #CD5C5D;">
             <!-- ... Small Card content ... -->
             <div class="text-center">
-              <p class="card-subtitle">ENGINEERING</p>
-              <h4 class="card-title text-bold">{{ total_engineering_alerts }}</h4>
+              <p class="card-subtitle">MAINTENANCE</p>
+              <h4 class="card-title text-bold">{{ total_maintenance_alerts }}</h4>
 
             </div>
           </div>
@@ -99,18 +99,18 @@
       <div class="row">
         <div class="col-md-4">
           <!-- Small Card 7 content -->
-          <div class="card smallCard shadow" style="background-color: #A7B289;">
+          <div routerLink="/alert_elect" class="card smallCard shadow" style="background-color: #A7B289;">
             <!-- ... Small Card content ... -->
             <div class="text-center">
-              <p class="card-subtitle">ELECT MAINT</p>
-              <h4 class="card-title text-bold">{{ total_elect_maint_alerts }}</h4>
+              <p class="card-subtitle">SUPPLY CHAIN</p>
+              <h4 class="card-title text-bold">{{ total_supplychain_alerts }}</h4>
 
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <!-- Small Card 8 content -->
-          <div class="card smallCard shadow" style="background-color: #7F8000;">
+          <div routerLink="/alert_quality" class="card smallCard shadow" style="background-color: #7F8000;">
             <!-- ... Small Card content ... -->
             <div class="text-center">
               <p class="card-subtitle">QUALITY</p>
@@ -121,11 +121,11 @@
         </div>
         <div class="col-md-4">
           <!-- Small Card 9 content -->
-          <div class="card smallCard shadow" style="background-color: #31692C;">
+          <div routerLink="/alert_mech" class="card smallCard shadow" style="background-color: #31692C;">
             <!-- ... Small Card content ... -->
             <div class="text-center">
-              <p class="card-subtitle">MECH MAINT</p>
-              <h4 class="card-title text-bold">{{ total_mech_maint_alerts }}</h4>
+              <p class="card-subtitle">MANUFACTURING ENGG</p>
+              <h4 class="card-title text-bold">{{ total_manufacturing_alerts }}</h4>
 
             </div>
           </div>
@@ -186,7 +186,7 @@
       <select class="form-select form-select-sm" placeholder="Assembly Line">
         <!-- <option disabled>Location</option> -->
         <!-- <option>All</option> -->
-        <option selected>BLR</option>
+        <option selected>PUNE</option>
       </select>
     </div>
     <div class="col-auto">
@@ -194,7 +194,7 @@
       <select class="form-select form-select-sm" placeholder="Assembly Line">
         <!-- <option disabled>Shopfloor</option> -->
         <!-- <option>All</option> -->
-        <option selected>BALL BEARING</option>
+        <option selected>TRB BEARING</option>
       </select>
     </div>
     <div class="col-auto">
@@ -202,27 +202,19 @@
       <select class="form-select form-select-sm" placeholder="Assembly Line" [(ngModel)]="selectedAssemblyline" (change)="onAssemblylineChange()">
         <!-- <option selected disabled>Assembly Line</option> -->
         <option>All</option>
-        <option>CH1</option>
-        <option>CH2</option>
-        <option>CH3</option>
-        <option>CH4</option>
-        <option>CH5</option>
-        <option>CH6</option>
-        <option>CH7</option>
-        <option>CH8</option>
+        <option>CHANNEL T3</option>
       </select>
     </div>
     <div class="col-auto">
       <label class="label">Machine ID :</label>
-      <select class="form-select form-select-sm" [(ngModel)]="selectedMachine" (change)="onMachineChange()">
+      <select class="form-select form-select-sm" placeholder="All" [(ngModel)]="selectedMachine" (change)="onMachineChange()">
         <!-- <option disabled selected>Machine ID</option> -->
         <option>All</option>
-        <option>CH5-SGB</option>
-        <option>CH5-SHG1</option>
-        <option>CH5-SHG2</option>
-        <option>CH5_SPC(IR)</option>
-        <option>CH5-SSB1</option>
-        <option>CH5-SSB2</option>
+        <option>SGB1054</option>
+        <option>AGB</option>
+        <option>SFP978</option>
+        <option>SHG1038</option>
+        <option>STB1302</option>
       </select>
     </div>
     <div class="col-auto">
@@ -231,10 +223,10 @@
         <!-- <option disabled selected>Category</option> -->
         <option>All</option>
         <option>RESETTING</option>
-        <option>ENGINEERING</option>
-        <option>ELECTMAINT</option>
+        <option>MAINTENANCE</option>
+        <option>SUPPLY CHAIN</option>
         <option>QUALITY</option>
-        <option>MECHMAINT</option>
+        <option>MANUFACTURING ENGG</option>
       </select>
     </div>
     <div class="col-auto">

@@ -22,10 +22,10 @@ export class AlertengineeringComponent implements OnInit {
   total_open_alerts: number = 0;
   total_acknowledge_alerts: number = 0;
   total_resetting_alerts: number = 0;
-  total_engineering_alerts: number = 0;
+  total_manufacturing_alerts: number = 0; //engg
   total_quality_alerts: number = 0;
-  total_mech_maint_alerts: number = 0;
-  total_elect_maint_alerts: number = 0;
+  total_maintenance_alerts: number = 0; //mech
+  total_supplychain_alerts: number = 0; //elect
   total_alerts: number = 0;
 
 
@@ -57,10 +57,10 @@ export class AlertengineeringComponent implements OnInit {
       this.total_open_alerts = data.total_open_alerts;
       this.total_acknowledge_alerts = data.total_acknowledge_alerts;
       this.total_resetting_alerts = data.total_resetting_alerts;
-      this.total_engineering_alerts = data.total_engineering_alerts;
+      this.total_manufacturing_alerts = data.total_manufacturing_alerts;
       this.total_quality_alerts = data.total_quality_alerts;
-      this.total_mech_maint_alerts = data.total_mech_maint_alerts;
-      this.total_elect_maint_alerts = data.total_elect_maint_alerts;
+      this.total_maintenance_alerts = data.total_maintenance_alerts;
+      this.total_supplychain_alerts = data.total_supplychain_alerts;
       this.total_alerts = data.total_alerts;
     });
   }

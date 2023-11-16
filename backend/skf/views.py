@@ -433,14 +433,14 @@ class AndonDataOpenEngineeringListView(generics.ListAPIView):
     serializer_class = AndonDataSerializer
 
     def get_queryset(self):
-        return AndonData.objects.filter(andon_resolved__isnull=True, category="ENGINEERING")
+        return AndonData.objects.filter(andon_resolved__isnull=True, category="MAINTENANCE")
 
 
 class AndonDataOpenElectListView(generics.ListAPIView):
     serializer_class = AndonDataSerializer
 
     def get_queryset(self):
-        return AndonData.objects.filter(andon_resolved__isnull=True, category="ELECT MAINT")
+        return AndonData.objects.filter(andon_resolved__isnull=True, category="SUPPLY CHAIN")
     
 
 
@@ -455,4 +455,4 @@ class AndonDataOpenMechListView(generics.ListAPIView):
     serializer_class = AndonDataSerializer
 
     def get_queryset(self):
-        return AndonData.objects.filter(andon_resolved__isnull=True, category="MECH MAINT")
+        return AndonData.objects.filter(andon_resolved__isnull=True, category="MAINTENANCE")

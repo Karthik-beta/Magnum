@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api'
 import { ButtonModule } from 'primeng/button';
 import { MenuItem, MessageService, ConfirmationService, ConfirmEventType } from 'primeng/api';
+import { SidebarModule } from 'primeng/sidebar';
 
 @Component({
   selector: 'app-nav',
@@ -11,6 +12,9 @@ import { MenuItem, MessageService, ConfirmationService, ConfirmEventType } from 
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+
+
+  sidebarVisible: boolean = false;
 
   @ViewChild('profileMenu') profileMenu: any;
   @ViewChild('settingsMenu') settingsMenu: any;
