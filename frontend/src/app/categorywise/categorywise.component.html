@@ -1,0 +1,231 @@
+
+
+<div class="container-fluid" style="font-size: small;">
+  <div class="row justify-content-between">
+      <div class="col-md-auto">
+          <div class="dash-card shadow rounded">
+              <div class="card-body">
+                <p style="font-weight: bolder;">Plant</p>
+                <div>
+                  <select class="form-control form-control-sm custom-select" placeholder="Select Options">
+                    <option value="" disabled>- All -</option>
+                    <option selected>SKF</option>
+                    <!-- <option>Pune</option> -->
+                  </select>
+                </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-auto">
+          <div class="dash-card shadow rounded">
+              <div class="card-body">
+                <p style="font-weight: bolder;">Shopfloor</p>
+                <div>
+                  <select class="form-control form-control-sm custom-select" placeholder="Select Options">
+                    <option value="" disabled>- All -</option>
+                    <option selected>BALL BEARING</option>
+                    <!-- <option>Axle</option> -->
+                  </select>
+                </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-auto">
+        <div class="dash-card shadow rounded">
+            <div class="card-body">
+              <p style="font-weight: bolder;">Assembly Line</p>
+              <div>
+                <select class="form-control form-control-sm custom-select" placeholder="Select Options">
+                  <option value="" disabled>- All -</option>
+                  <option selected>CH5</option>
+                  <!-- <option>Line 2</option> -->
+                </select>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-auto">
+          <div class="dash-card shadow rounded">
+              <div class="card-body">
+                <p style="font-weight: bolder;">Machine</p>
+                <div>
+                  <select class="form-control form-control-sm custom-select" placeholder="Select Options">
+                    <option value="" disabled selected>- All -</option>
+                    <option>RESETTING</option>
+                    <option>ENGINEERING</option>
+                    <option>ELECT MAINT</option>
+                    <option>QUALITY</option>
+                    <option>MECH MAINT</option>
+                  </select>
+                </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-auto">
+          <div class="dash-card shadow rounded">
+              <div class="card-body">
+                <p style="font-weight: bolder;">B D Category</p>
+                <select class="form-control form-control-sm custom-select" placeholder="Select Options">
+                  <option value="" disabled selected>- All -</option>
+                  <option>Mechanical</option>
+                  <option>Electrical</option>
+                </select>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-auto">
+          <div class="dash-card shadow rounded">
+              <div class="card-body">
+                <p style="font-weight: bolder;">Open Alert</p>
+                <div><h5>{{ total_open_alerts }}</h5></div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-auto">
+          <div class="dash-card shadow rounded">
+              <div class="card-body">
+                <p style="font-weight: bolder;">Closed Alert</p>
+                <div><h5>{{ total_closed_alerts }}</h5></div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="container-fluid mt-3 container-1 shadow rounded">
+  <div class="row">
+    <div class="col-md-12 text-center mt-2">
+      <h4>CATEGORY : QUALITY</h4>
+    </div>
+    <div class="col-md-12">
+      <div class="scrollable-cards">
+        <div class="card" *ngFor="let dataItem of qualityItems; let i = index">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-bell"></i></h5>
+            <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">
+            <p class="card-text" style="font-weight: bolder;">Shopfloor : {{ dataItem.shopfloor }}</p>
+            <p class="card-text">Machine ID : {{ dataItem.machineId }}</p>
+            <p class="card-text">Status : Active</p>
+            <p class="card-text">Alert : {{ dataItem.andon_alerts }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="container-fluid mt-3 container-1 shadow rounded">
+  <div class="row">
+    <div class="col-md-12 text-center mt-2">
+      <h4>CATEGORY : ENGINEERING</h4>
+    </div>
+    <div class="col-md-12">
+      <div class="scrollable-cards">
+        <div class="card" *ngFor="let dataItem of engineeringItems; let i = index">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-bell"></i></h5>
+            <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">
+            <p class="card-text" style="font-weight: bolder;">Shopfloor : {{ dataItem.shopfloor }}</p>
+            <p class="card-text">Machine ID : {{ dataItem.machineId }}</p>
+            <p class="card-text">Status : Active</p>
+            <p class="card-text">Alert : {{ dataItem.andon_alerts }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="container-fluid mt-3 container-1 shadow rounded">
+  <div class="row">
+    <div class="col-md-12 text-center mt-2">
+      <h4>CATEGORY : RESETTING</h4>
+    </div>
+    <div class="col-md-12">
+      <div class="scrollable-cards">
+        <div class="card" *ngFor="let dataItem of resettingItems; let i = index">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-bell"></i></h5>
+            <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">
+            <p class="card-text" style="font-weight: bolder;">Shopfloor : {{ dataItem.shopfloor }}</p>
+            <p class="card-text">Machine ID : {{ dataItem.machineId }}</p>
+            <p class="card-text">Status : Active</p>
+            <p class="card-text">Alert : {{ dataItem.andon_alerts }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="container-fluid mt-3 container-1 shadow rounded">
+  <div class="row">
+    <div class="col-md-12 text-center mt-2">
+      <h4>CATEGORY : ELECT MAINT</h4>
+    </div>
+    <div class="col-md-12">
+      <div class="scrollable-cards">
+        <div class="card" *ngFor="let dataItem of electmaint; let i = index">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-bell"></i></h5>
+            <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">
+            <p class="card-text" style="font-weight: bolder;">Shopfloor : {{ dataItem.shopfloor }}</p>
+            <p class="card-text">Machine ID : {{ dataItem.machineId }}</p>
+            <p class="card-text">Status : Active</p>
+            <p class="card-text">Alert : {{ dataItem.andon_alerts }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="container-fluid mt-3 container-1 shadow rounded">
+  <div class="row">
+    <div class="col-md-12 text-center mt-2">
+      <h4>CATEGORY : MECH MAINT</h4>
+    </div>
+    <div class="col-md-12">
+      <div class="scrollable-cards">
+        <div class="card" *ngFor="let dataItem of mechmaint; let i = index">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-bell"></i></h5>
+            <div class="card-content" [style.backgroundColor]="cardColors[i % cardColors.length]">
+            <p class="card-text" style="font-weight: bolder;">Shopfloor : {{ dataItem.shopfloor }}</p>
+            <p class="card-text">Machine ID : {{ dataItem.machineId }}</p>
+            <p class="card-text">Status : Active</p>
+            <p class="card-text">Alert : {{ dataItem.andon_alerts }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

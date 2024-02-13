@@ -1,0 +1,74 @@
+<div class="container-fluid shadow">
+  <header class="d-flex flex-wrap justify-content-center py-2 mb-2 border-bottom ">
+    <a href="/alert" class="d-flex align-items-center mb-4 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+      <img src="assets/images/Magnum.png" alt="" width="150" height="40">
+      <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      <span class="fs-4">MAGNUM</span> -->
+    </a>
+    <a href="/alert" class="d-flex align-items-center mb-4 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+      <img src="assets/images/SKF.jpeg" alt="" width="150" height="40">
+      <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      <span class="fs-4">MAGNUM</span> -->
+    </a>
+
+    <ul class="nav nav-pills" style="margin-right: 0.7em;">
+      <!-- <li class="nav-item"><a routerLink="/dashboard" class="nav-link active" aria-current="page"><i class="pi pi-plus"></i> Dashboard</a></li> -->
+      <!-- Shift Strength V/S Skill Matrix, Evacuation  -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+          <i class="fas fa-tachometer-alt"></i> Dashboard
+        </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/alert"><i class="fas fa-industry"></i> Andon Plant Breakdown</a>
+            <a class="dropdown-item" routerLink="/shopfloorwise"><i class="fas fa-wrench"></i> Andon Shopfloor Breakdown</a>
+            <a class="dropdown-item" routerLink="/categorywise"><i class="fas fa-list-alt"></i> Andon Category Breakdown</a>
+            <a class="dropdown-item" routerLink="/dashboard"><i class="fas fa-exclamation-circle"></i> Andon Alerts</a>
+          </div>
+        </li>
+      <!-- <li class="nav-item"><a routerLink="/employee" class="nav-link link-body-emphasis" aria-current="page"><i class="bi bi-person-fill-add"></i>  Onboarding</a></li> -->
+      <!-- <li class="nav-item"><a routerLink="/employee" class="nav-link link-body-emphasis mr-1" aria-current="page"><i class="bi bi-person-fill-add"></i> Resource Allocation</a></li> -->
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+        <i class="fas fa-exclamation-triangle"></i> Andon Breakdown
+      </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/andonhelp"><i class="fas fa-phone-volume"></i> Andon Call Help</a>
+
+        </div>
+      </li>
+
+      <li class="nav-item"><a class="nav-link link-body-emphasis" routerLink="/alertreport"><i class="fa-solid fa-bell"></i> Andon Alerts Info</a></li>
+      <!-- <li class="nav-item"><a routerLink="/monthly" class="nav-link active mr-3 ml-2"> <i class="pi pi-calendar"></i> Monthly Info</a></li> -->
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+        <i class="fas fa-chart-line"></i> Andon Breakdown Analysis
+      </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/assembly_analysis"><i class="fas fa-chart-bar"></i> Assembly Line Analysis</a>
+          <a class="dropdown-item" routerLink="/machinewise_analysis"><i class="fas fa-cogs"></i> Machine Wise Analysis</a>
+        </div>
+      </li>
+      <!-- <li class="nav-item"><a routerLink="/report" class="nav-link link-body-emphasis"><i class="bi bi-file-earmark-excel"></i> History</a></li> -->
+      <div (click)="profileMenu.toggle($event)">
+      <li class="nav-item" style="font-size: 1.7rem; margin-right: 0.8rem; cursor: pointer;"><i class="bi bi-person-circle" ></i><i class="pi pi-chevron-down" style="margin-left: 0.5rem;"></i></li>
+      <p-menu #profileMenu [model]="profile_items" [popup]="true"></p-menu>
+      </div>
+      <div (click)="settingsMenu.toggle($event)">
+      <li class="nav-item" style="font-size: 1.7rem; cursor: pointer;"><i class="bi bi-gear"></i><i class="pi pi-chevron-down" style="margin-left: 0.5rem;"></i> </li>
+      <p-menu #settingsMenu [model]="settings_items" [popup]="true"></p-menu>
+      </div>
+    </ul>
+  </header>
+</div>
+
+
+
+
+
+  <p-toast></p-toast>
+  <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+
+
+
+
+
