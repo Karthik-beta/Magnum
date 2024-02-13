@@ -20,7 +20,7 @@ RUN npm run build --prod
 FROM nginx:stable
 
 # Copy the build output from the previous stage to replace the default Nginx contents
-COPY --from=build /app/dist/sakai-ng /usr/share/nginx/html
+COPY --from=build /app/dist/frontend /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 4200
