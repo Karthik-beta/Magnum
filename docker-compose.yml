@@ -6,7 +6,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile  # Use your Angular Dockerfile
     ports:
-      - "80:80" # Map port 80 on the host to port 80 in the container
+      - "4200:4200" # Map port 80 on the host to port 80 in the container
     # networks:
     #   - WIP_network 
     restart: always  # Add this line for automatic restart
