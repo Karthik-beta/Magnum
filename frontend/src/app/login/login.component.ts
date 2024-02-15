@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observer } from 'rxjs';
 // import {AuthService} from '../auth.service';
 
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,7 +21,7 @@ export class LoginComponent {
   };
 
 
-  constructor(private http: HttpClient, private router: Router, private sharedService: SharedService) {}
+  constructor(private http: HttpClient, private router: Router, private sharedService: SharedService, private messageService: MessageService) {}
 
 
   ngOnInit(): void {
@@ -61,5 +63,35 @@ export class LoginComponent {
 
     this.http.post(apiUrl, this.formData).subscribe(observer);
   }
+
+  username!: string;
+
+  password!: string;
+
+  navigateIfMatch(): void {
+    switch (true) {
+        case this.username === 'skf' && this.password === 'skf123':
+            // Navigate to /dashboard if username and password are both 'hamilton'
+            this.router.navigate(['/alert']);
+            break;
+
+        case this.username === 'admin' && this.password === 'admin123':
+            // Navigate to another route if username and password match another combination
+            this.router.navigate(['/alert']);
+            break;
+
+        case this.username === 'superuser' && this.password === 'superuser':
+            // Navigate to another route if username and password match another combination
+            this.router.navigate(['/alert']);
+            break;
+
+        default:
+            // Handle the case when none of the conditions are met
+            console.log('Invalid username or password');
+            this.messageService.add({ severity: 'error', summary: 'Login Failed', detail: 'Invalid username or password' });
+            // Optionally, you can navigate to an error route or show a message to the user.
+            break;
+    }
+}
 
 }
